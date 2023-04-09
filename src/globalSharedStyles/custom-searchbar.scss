@@ -1,0 +1,34 @@
+// BEGIN: Searchbar custom form field
+
+.search-custom-form-field {
+    background-color: transparent;
+    .mat-form-field-wrapper {
+        padding: 0;
+        .mat-form-field-flex {
+            background-color: $white;
+            border-radius: 10px;
+            border: 1px solid $stepperGray;
+            padding: 0;
+            align-items: center;
+            .mat-form-field-infix {
+                margin-left: 10px;
+                label {
+                    color: $matLabelGray;
+                    font-weight: 500;
+                }
+            }
+        }
+        .mat-form-field-underline {
+            display: none;
+        }
+    }
+    .mat-input-element {
+        color: black;
+    }
+
+    .mat-form-field-required-marker {
+        color: $matLabelGray;
+    }
+}
+
+// END: Searchbar custom form field

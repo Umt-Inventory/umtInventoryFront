@@ -1,0 +1,15 @@
+// BEGIN: Mat option custom colors
+.mat-option.mat-active {
+    background-color: $lightBlue;
+}
+.mat-option:hover:not(.mat-option-disabled) {
+    background-color: $lightBlue;
+}
+
+.mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+    background-color: $lightBlue;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $black;
+}
+// END: Mat option custom colors

@@ -1,0 +1,30 @@
+// BEGIN: Mat datepicker custom colors
+
+.mat-calendar-body-selected {
+    background-color: $blue;
+}
+
+.mat-datepicker-toggle .mat-icon-button {
+    color: $blue;
+}
+
+.mat-calendar-body-active {
+    color: $white;
+    background-color: $blue;
+    border-color: $blue;
+}
+
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
+    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: $lightBlue;
+}
+.cdk-keyboard-focused
+    .mat-calendar-body-active
+    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical),
+.cdk-program-focused
+    .mat-calendar-body-active
+    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: $lightBlue;
+}
+
+// END: Mat datepicker custom colors

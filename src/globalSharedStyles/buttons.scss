@@ -1,0 +1,39 @@
+// BEGIN: Custom buttons
+
+.button {
+    text-align: center;
+    cursor: pointer;
+    background-color: $blue;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+
+    &[disabled] {
+        background-color: $gray;
+        cursor: not-allowed;
+    }
+}
+.button-small {
+    padding: 12px 20px;
+}
+.button-full {
+    width: 100%;
+    padding: 12px 0;
+}
+.button-full-no-background {
+    width: 100%;
+    padding: 12px 0;
+    background-color: transparent;
+    border: 1px solid $blue;
+    color: $blue;
+}
+.button-full-no-border {
+    width: 100%;
+    padding: 12px 0;
+    background-color: transparent;
+    border: none;
+    color: $blue;
+}
+
+// END: Custom buttons

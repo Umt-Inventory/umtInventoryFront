@@ -1,0 +1,40 @@
+// BEGIN: Custom toaster popup notifications
+
+.toast-right-top {
+    .container-1 {
+        .fa-info-circle {
+            color: $blue !important;
+        }
+        .fa-times-circle {
+            color: $red !important;
+        }
+        .fa-check-circle {
+            color: $green !important;
+        }
+    }
+    .container-2 {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        flex-direction: column;
+        p {
+            font-family: 'Inter' !important;
+        }
+    }
+}
+
+.toast-right-top.error {
+    border-left: 8px solid $red !important;
+}
+
+.toast-right-top.success {
+    border-left: 8px solid $green !important;
+}
+
+.toast-right-top.info {
+    border-left: 8px solid $blue !important;
+}
+.toast-right-top.warning {
+    border-left: 8px solid $yellow !important;
+}
+// END: Custom toaster popup notifications
