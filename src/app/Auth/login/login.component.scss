@@ -1,48 +1,50 @@
-.login {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
+@import "../../../Variables.scss";
+
+.login-container {
+  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+
+  .login-body-container {
+    max-width: 500px;
+    justify-self: center;
+    align-self: center;
+    gap: 0;
+    background-color: $lightGrey;
+    border-radius: 15px;
+    padding: 63px;
+    .login-header {
+      width: 100%;
+      display: block;
+      margin: 0 0 2rem 0;
+      .login-title {
+        text-align: center;
+        font-size: 32px;
+      }
     }
-    
-    form {
+
+    .forma {
       display: flex;
       flex-direction: column;
-      
-      div {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-        
-        label {
-          font-weight: bold;
-          margin-bottom: 5px;
+      align-items: center;
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+
+      .bisha {
+        width: 100%;
+        border-radius: 10px;
+        ::placeholder {
+          color: $matLabelGray;
         }
-        
-        input[type="text"],
-        input[type="password"] {
-          padding: 10px;
-          border-radius: 5px;
-          border: 1px solid #ccc;
+
+        mat-error {
+          width: 100%;
+          font-size: 12px;
+          text-align: left;
         }
       }
-      
-      button[type="submit"] {
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: #007bff;
-        color: #fff;
-        cursor: pointer;
-        
-        &:hover {
-          background-color: #006
-        }
     }
-}
+  }
 }

@@ -1,4 +1,381 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../src/Variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+// Mobile media queries
+// BEGIN: Temporary account stepper container
+// TODO: Remove
+a{
+text-decoration: none;
+color: $blue;
+
+}
+.temporary-account-stepper-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+// END: Temporary account stepper container
+
+.hide-for-mobile {
+    display: none;
+}
+.container {
+    width: 95%;
+    margin: 0 auto;
+    max-width: unset;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $lightGray;
+    font-family: 'Inter';
+}
+.auth{
+    background-color: $blue;
+    font-family: 'Inter';
+
+
+}
+.button {
+    text-align: center;
+    cursor: pointer;
+    background-color: $blue;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+}
+.button-small {
+    font-size: 12px;
+    padding: 12px 20px;
+}
+.button-full {
+    width: 100%;
+    padding: 12px 0;
+}
+.button-full-no-background {
+    width: 100%;
+    padding: 12px 0;
+    background-color: transparent;
+    border: 1px solid $blue;
+    color: $blue;
+}
+.button-full-no-border {
+    width: 100%;
+    padding: 12px 0;
+    background-color: transparent;
+    border: none;
+    color: $blue;
+}
+.blank {
+    display: none;
+}
+.buton-bisha{
+    width: 100px;
+    padding: 12px 0;
+}
+.mat-tab-label .mat-tab-label-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    color: white;
+}
+.mat-radio-group .mat-radio-button {
+    color: $matLabelGray;
+}
+
+// BEGIN: Mat-form-field appearance outline custom css
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: $stepperGray;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+    .mat-form-field-outline-thick {
+    color: $red;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: $blue;
+}
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+    color: $blue;
+}
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused
+    .mat-form-field-label {
+    color: $red;
+}
+// END: Mat-form-field appearance outline custom css
+
+// BEGIN: Searchbar custom form field
+
+.search-custom-form-field {
+    background-color: transparent;
+    .mat-form-field-wrapper {
+        padding: 0;
+        .mat-form-field-flex {
+            background-color: $white;
+            border-radius: 10px;
+            border: 1px solid $stepperGray;
+            padding: 0;
+            align-items: center;
+            .mat-form-field-infix {
+                margin-left: 10px;
+                label {
+                    color: $matLabelGray;
+                    font-weight: 500;
+                }
+            }
+        }
+        .mat-form-field-underline {
+            display: none;
+        }
+    }
+    .mat-input-element {
+        color: black;
+    }
+
+    .mat-form-field-required-marker {
+        color: $matLabelGray;
+    }
+}
+
+// END: Searchbar custom form field
+
+// BEGIN: Calculator custom form field
+.calculator-custom-form-field {
+    background-color: transparent;
+    .mat-form-field-wrapper {
+        padding: 0;
+        .mat-form-field-flex {
+            background-color: $white;
+            border-radius: 10px;
+            border: 1px solid $stepperGray;
+            padding: 0;
+            width: 110px;
+            align-items: center;
+            .mat-form-field-infix {
+                margin-left: 10px;
+                border: none;
+                label {
+                    color: $matLabelGray;
+                    font-weight: 500;
+                }
+            }
+        }
+        .mat-form-field-underline {
+            display: none;
+        }
+    }
+    .mat-input-element {
+        color: black;
+    }
+
+    .mat-form-field-required-marker {
+        color: $matLabelGray;
+    }
+}
+// END: Calculator custom form field
+
+// BEGIN: Phone verification custom form field
+
+.phone-verification-custom-form-field {
+    .mat-form-field-flex {
+        align-items: center;
+    }
+}
+
+// END: Phone verification custom form field
+
+// BEGIN: Mat-form-field appearance outline custom css
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+    border-radius: 5px;
+}
+
+// END: Mat-form-field appearance outline custom css
+
+// BEGIN: Mat radio button custom colors
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $blue;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    color: $blue;
+    background-color: $blue;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: $blue !important;
+}
+
+// END: Mat radio button custom colors
+
+// BEGIN: Mat datepicker custom colors
+
+.mat-calendar-body-selected {
+    background-color: $blue;
+}
+
+.mat-datepicker-toggle .mat-icon-button {
+    color: $blue;
+}
+
+.mat-calendar-body-active {
+    color: $white;
+    background-color: $blue;
+    border-color: $blue;
+}
+
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
+    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: $lightBlue;
+}
+.cdk-keyboard-focused
+    .mat-calendar-body-active
+    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical),
+.cdk-program-focused
+    .mat-calendar-body-active
+    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: $lightBlue;
+}
+
+// END: Mat datepicker custom colors
+
+// BEGIN: Mat option custom colors
+.mat-option.mat-active {
+    background-color: $lightBlue;
+}
+.mat-option:hover:not(.mat-option-disabled) {
+    background-color: $lightBlue;
+}
+
+.mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+    background-color: $lightBlue;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $black;
+}
+// END: Mat option custom colors
+
+// BEGIN: Calculator slider custom thumbs
+.calculator-slider-1.mat-accent .mat-slider-thumb,
+.calculator-slider-2.mat-accent .mat-slider-thumb,
+.calculator-slider-3.mat-accent .mat-slider-thumb {
+    width: 30px;
+    border-radius: 20px;
+}
+// END: Calculator slider custom thumbs
+
+// BEGIN: First calculator slider
+.calculator-slider-1.mat-slider-horizontal .mat-slider-track-fill {
+    background-color: $blue;
+}
+.calculator-slider-1.mat-accent .mat-slider-thumb {
+    background-color: $blue;
+}
+// END: First calculator slider
+
+// BEGIN: Second calculator slider
+.calculator-slider-2.mat-slider-horizontal .mat-slider-track-fill {
+    background-color: $yellow;
+}
+.calculator-slider-2.mat-accent .mat-slider-thumb {
+    background-color: $yellow;
+}
+// END: Second calculator slider
+
+// BEGIN: Third calculator slider
+.calculator-slider-3.mat-slider-horizontal .mat-slider-track-fill {
+    background-color: $red;
+}
+.calculator-slider-3.mat-accent .mat-slider-thumb {
+    background-color: $red;
+}
+// END: Third calculator slider
+
+// BEGIN: Custom scrollbar
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: $white;
+    // border-radius: 50%;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: $blue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba($color: $blue, $alpha: 0.8);
+    border-radius: 50%;
+}
+// END: Custom scrollbar
+
+// Hide up/down arrows from number inputs
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.ng-otp-input-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+// Desktop media queries
+@media screen and (min-width: 641px) {
+    .container {
+        width: 95%;
+        margin: 0 auto;
+        max-width: 1810px;
+    }
+    .hide-for-web {
+        display: none;
+    }
+    .hide-for-mobile {
+        display: block;
+    }
+    // BEGIN: Temporary account stepper container
+    // TODO: Remove
+    .temporary-account-stepper-container {
+        height: 80vh;
+        // display: flex;
+        // flex-direction: column;
+        justify-content: space-between;
+    }
+    // END: Temporary account stepper container
+}
+
+.onfido-sdk-ui-Theme-modalOverlay {
+    z-index: 9999;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

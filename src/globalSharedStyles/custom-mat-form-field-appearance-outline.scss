@@ -1,0 +1,23 @@
+// BEGIN: Mat-form-field appearance outline custom css
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: $stepperGray;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+    .mat-form-field-outline-thick {
+    color: $red;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: $blue;
+}
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+    color: $blue;
+}
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused
+    .mat-form-field-label {
+    color: $red;
+}
+// END: Mat-form-field appearance outline custom css

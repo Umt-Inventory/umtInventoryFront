@@ -1,0 +1,62 @@
+// BEGIN: Mat panel custom styles
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled='true'])
+    .mat-expansion-panel-header:hover {
+    background-color: $lightGray;
+}
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+    box-shadow: none;
+    width: 100%;
+    .mat-content.mat-content-hide-toggle {
+        margin-right: 0;
+    }
+    .mat-expansion-panel-header-title,
+    .mat-expansion-panel-header-description {
+        display: flex;
+        flex-grow: 1;
+        flex-basis: 0;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 0;
+    }
+
+    .mat-expansion-panel-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 24px;
+        transition: height 225ms cubic-bezier(0.4, 0, 0.2, 1);
+        background-color: $lightGray;
+        border-radius: 0;
+    }
+
+    .mat-expansion-panel-header.mat-expanded:focus,
+    .mat-expansion-panel-header.mat-expanded:hover {
+        background: $lightGray;
+    }
+
+    .mat-expansion-panel-body {
+        padding: 0 10px 0 10px;
+        color: black;
+        background: $lightGray;
+        font-family: 'Inter';
+    }
+    .mat-expansion-panel-content {
+        background: $lightGray;
+    }
+
+    .mat-accordion > .mat-expansion-panel-spacing:last-child,
+    .mat-accordion
+        > *:last-child:not(.mat-expansion-panel)
+        .mat-expansion-panel-spacing {
+        margin-bottom: 0;
+        background-color: $lightGray;
+    }
+    .mat-accordion .mat-expansion-panel:last-of-type {
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+        background-color: $lightGray;
+    }
+}
+
+// END: Mat panel custom styles
