@@ -4,10 +4,9 @@
 // Mobile media queries
 // BEGIN: Temporary account stepper container
 // TODO: Remove
-a{
-text-decoration: none;
-color: $blue;
-
+a {
+    text-decoration: none;
+    color: $blue;
 }
 .temporary-account-stepper-container {
     display: flex;
@@ -36,11 +35,10 @@ body {
     background-color: $lightGray;
     font-family: 'Inter';
 }
-.auth{
+.auth {
     background-color: $blue;
     font-family: 'Inter';
-
-
+    overflow: hidden;
 }
 .button {
     text-align: center;
@@ -76,7 +74,7 @@ body {
 .blank {
     display: none;
 }
-.buton-bisha{
+.buton-bisha {
     width: 100px;
     padding: 12px 0;
 }
@@ -96,8 +94,7 @@ body {
     color: $stepperGray;
 }
 
-.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
-    .mat-form-field-outline-thick {
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
     color: $red;
 }
 
@@ -107,8 +104,7 @@ body {
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
     color: $blue;
 }
-.mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused
-    .mat-form-field-label {
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused .mat-form-field-label {
     color: $red;
 }
 // END: Mat-form-field appearance outline custom css
@@ -377,5 +373,20 @@ input[type='number'] {
     z-index: 9999;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
