@@ -1,0 +1,24 @@
+@import "../../../Variables.scss";
+.footer {
+  background-color: $lightBlue;
+  padding: 20px 0;
+}
+
+.footer p {
+  font-size: 14px;
+  margin-bottom: 0;
+  color: $white;
+}
+
+.footer ul {
+  margin-bottom: 0;
+}
+
+.footer ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.footer ul li:last-child {
+  margin-right: 0;
+}
