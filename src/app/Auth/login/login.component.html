@@ -1,5 +1,6 @@
 <body class="auth">
     <div class="login-container">
+        <img src="../../../assets/UMT Inventory/umtinventoy 1 A.svg" style="width: 190px" alt="" />
         <div class="login-body-container">
             <div class="login-header">
                 <br /><br />
@@ -7,8 +8,8 @@
             </div>
             <form [formGroup]="myForm" class="forma">
                 <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
-                    <mat-label for="username">Username:</mat-label>
-                    <input matInput type="text" formControlName="username" placeholder="Username" autocomplete="off" />
+                    <mat-label for="email">Email:</mat-label>
+                    <input matInput type="email" formControlName="username" placeholder="Username" autocomplete="off" />
                     <mat-error *ngIf="myForm.controls['username'].invalid"> Incorrect username </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="bisha">
