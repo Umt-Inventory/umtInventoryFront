@@ -35,8 +35,16 @@ body {
     background-color: $lightGray;
     font-family: 'Inter';
 }
+
 .auth {
     background-color: $blue;
+    font-family: 'Inter';
+    overflow: auto;
+}
+.items {
+    background-image: url('../src/assets/Background/background1.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: 'Inter';
     overflow: auto;
 }
