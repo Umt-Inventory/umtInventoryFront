@@ -13,9 +13,10 @@ import {NgxsModule} from '@ngxs/store';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ItemsComponent } from './Screens/items/items.component';
 import { ItemDetailsComponent } from './Screens/item-details/item-details.component';
+import { BuildingsComponent } from './Screens/buildings/buildings.component';
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, RegisterComponent, FooterComponent, NavbarComponent, ItemsComponent, ItemDetailsComponent],
+    declarations: [AppComponent, LoginComponent, RegisterComponent, FooterComponent, NavbarComponent, ItemsComponent, ItemDetailsComponent, BuildingsComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

@@ -1,1 +1,23 @@
-<p>navbar works!</p>
+<div class="nav">
+    <div class="container">
+        <div class="flex">
+            <div class="nav-items">
+                <img class="logoinnav" src="../../../assets/UMT Inventory/umtinventoy 1.svg" alt="" />
+                <mat-menu class="hamburger-menu" #menu="matMenu">
+                    <!-- <span class="material-icons">password</span> -->
+                    <span mat-menu-item>Dashboard</span>
+
+                    <!-- <span class="material-icons">account_circle</span> -->
+                    <span mat-menu-item>Requests</span>
+                    <!-- <span class="material-icons">account_circle</span> -->
+                    <span mat-menu-item>Manage Users</span>
+                    <div mat-menu-item class="button buton-bisha">
+                        <span class="material-icons">logout</span>
+                        <span>Logout</span>
+                    </div>
+                </mat-menu>
+                <mat-icon class="hamburger" mat-icon-button [matMenuTriggerFor]="menu">more_vert</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>

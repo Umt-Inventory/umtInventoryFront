@@ -1,24 +1,48 @@
-@import "../../../Variables.scss";
+@import '../../../Variables.scss';
 .footer {
-  background-color: $lightBlue;
-  padding: 20px 0;
-}
+    background-color: #283049;
+    padding: 20px 0 10px 0;
+    color: $white;
 
-.footer p {
-  font-size: 14px;
-  margin-bottom: 0;
-  color: $white;
-}
+    .footer-body {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
 
-.footer ul {
-  margin-bottom: 0;
-}
+        .footer-links {
+            argin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
 
-.footer ul li {
-  display: inline-block;
-  margin-right: 10px;
-}
+    p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
 
-.footer ul li:last-child {
-  margin-right: 0;
+    ul {
+        margin-bottom: 0;
+    }
+
+    ul li {
+        display: inline-block;
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        a {
+            color: $white;
+            text-decoration: none;
+        }
+    }
+
+    .logo {
+        height: 50px;
+        display: block;
+        margin-right: auto;
+    }
 }
