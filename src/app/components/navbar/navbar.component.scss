@@ -1,0 +1,25 @@
+@import '../../../Variables.scss';
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    .nav-items {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logoinnav {
+            height: 50px;
+            display: block;
+            cursor: pointer;
+        }
+        .hamburger {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+}
