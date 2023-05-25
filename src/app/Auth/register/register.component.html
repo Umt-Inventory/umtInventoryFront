@@ -6,14 +6,33 @@
             <form [formGroup]="myForm" class="forma">
                 <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
                     <mat-label for="email">Email:</mat-label>
-                    <input matInput type="email" formControlName="username" placeholder="Username" autocomplete="off" />
-                    <mat-error *ngIf="myForm.controls['username'].invalid"> Incorrect username </mat-error>
+                    <input matInput type="email" formControlName="email" placeholder="Email" autocomplete="off" />
+                    <mat-error *ngIf="myForm.controls['email'].invalid"> Incorrect email </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+                    <mat-label for="name">Name:</mat-label>
+                    <input matInput type="text" formControlName="name" placeholder="Name" autocomplete="off" />
+                    <mat-error *ngIf="myForm.controls['name'].invalid"> Incorrect name </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
                     <mat-label for="surname">Surname:</mat-label>
                     <input matInput type="text" formControlName="surname" placeholder="Surname" autocomplete="off" />
                     <mat-error *ngIf="myForm.controls['surname'].invalid"> Incorrect surname </mat-error>
                 </mat-form-field>
+                <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+                    <mat-label for="phone">Phone:</mat-label>
+                    <input matInput type="text" formControlName="phone" placeholder="Phone" autocomplete="off" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="bisha">
+                    <mat-label for="workspaceID">Workspace ID:</mat-label>
+                    <input
+                        matInput
+                        type="number"
+                        formControlName="workspaceID"
+                        placeholder="Workspace ID"
+                        autocomplete="off" />
+                </mat-form-field>
+
                 <mat-form-field appearance="outline" class="bisha">
                     <mat-label for="password">Password:</mat-label>
                     <input
@@ -31,14 +50,14 @@
                     </button>
                     <mat-error *ngIf="myForm.controls['password'].invalid"> Incorrect password </mat-error>
                 </mat-form-field>
-                <!-- <p>Dont have an account? <a routerLink="/register">Register</a></p> -->
-                <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">Login</button>
-                <br />
-                <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">
-                    Microsoft Account
-                </button>
-                <a routerLink="/items">Go to items</a>
-                <a routerLink="/buildings">Go to buildings</a>
+                <mat-form-field appearance="outline" class="bisha">
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="role">
+                        <mat-option *ngFor="let role of userRoles" [value]="role">{{ role }}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="myForm.controls['role'].invalid"> Please select a role </mat-error>
+                </mat-form-field>
+                <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">Register</button>
             </form>
         </div>
     </div>

@@ -7,6 +7,7 @@ import {ItemDetailsComponent} from './Screens/item-details/item-details.componen
 import {BuildingsComponent} from './Screens/buildings/buildings.component';
 import {AuthGuard} from './guards/auth.guard';
 import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
+import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
 
 const routes: Routes = [
     {
@@ -15,8 +16,9 @@ const routes: Routes = [
     },
 
     {
-        path: 'login',
-        component: LoginComponent,
+        path: 'change-password',
+        component: ChangePasswordComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'register',

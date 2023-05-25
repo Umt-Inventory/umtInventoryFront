@@ -1,1 +1,37 @@
-<p>{{ godina }}</p>
+<div class="container" *ngIf="workspaces">
+    <div class="building-selection">
+        <h2 class="text-center">Choose a Workspace</h2>
+        <p class="text-center">
+            Total Workspaces: <b>{{ workspaces.totalWorkspaces }}</b>
+        </p>
+        <div class="search">
+            <mat-form-field appearance="fill">
+                <mat-label>Search</mat-label>
+                <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
+                <button
+                    mat-button
+                    *ngIf="searchQuery"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="resetFilter()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <div class="col-md-6" *ngFor="let workspace of filteredWorkspaces">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>
+                            <b>{{ workspace.name }}</b>
+                        </h3>
+                        <p>
+                            Lloji: <b>{{ workspace.type }}</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

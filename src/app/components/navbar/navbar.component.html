@@ -4,12 +4,12 @@
             <div class="nav-items">
                 <img class="logoinnav" src="../../../assets/UMT Inventory/umtinventoy 1.svg" alt="" />
                 <mat-menu class="hamburger-menu" #menu="matMenu">
-                    <span mat-menu-item>Workspaces</span>
+                    <a mat-menu-item routerLink="/buildings">Workspaces</a>
 
-                    <span mat-menu-item>Requests</span>
+                    <a mat-menu-item routerLink="/requests">Requests</a>
 
-                    <span mat-menu-item>Manage Users</span>
-                    <span mat-menu-item>Change Password</span>
+                    <a mat-menu-item routerLink="/manage-users">Manage Users</a>
+                    <a mat-menu-item routerLink="/change-password">Change Password</a>
 
                     <div mat-menu-item class="button buton-bisha" (click)="logout()">
                         <span class="material-icons">logout</span>
