@@ -1,6 +1,6 @@
 import {animate, query, style, transition, trigger} from '@angular/animations';
-import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {RouterOutlet, Router, Event, NavigationEnd} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -28,8 +28,20 @@ import {RouterOutlet} from '@angular/router';
         ]),
     ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'umtInventoryFront';
+    showNavbar = true;
+
+    constructor(private router: Router) {}
+
+    ngOnInit() {
+        this.router.events.subscribe((event: Event) => {
+            if (event instanceof NavigationEnd) {
+                // Hide navbar in '/login' and '/register' routes
+                this.showNavbar = !['/login', '/register', '/'].includes(event.url);
+            }
+        });
+    }
 
     prepareOutlet(outlet: RouterOutlet) {
         if (outlet.isActivated) {

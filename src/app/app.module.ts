@@ -14,9 +14,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ItemsComponent } from './Screens/items/items.component';
 import { ItemDetailsComponent } from './Screens/item-details/item-details.component';
 import { BuildingsComponent } from './Screens/buildings/buildings.component';
+import { WorkspacesComponent } from './Screens/workspaces/workspaces.component';
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, RegisterComponent, FooterComponent, NavbarComponent, ItemsComponent, ItemDetailsComponent, BuildingsComponent],
+    declarations: [AppComponent, LoginComponent, RegisterComponent, FooterComponent, NavbarComponent, ItemsComponent, ItemDetailsComponent, BuildingsComponent, WorkspacesComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
