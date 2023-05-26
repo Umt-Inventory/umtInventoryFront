@@ -48,6 +48,8 @@ export class LoginComponent {
                 console.log(this.decodedToken); // This will print decoded token data on the console
                 localStorage.setItem('role', this.decodedToken.role);
                 localStorage.setItem('id', this.decodedToken.nameid);
+                localStorage.setItem('name', this.decodedToken.unique_name);
+
                 this.loginSuccesFlag = true;
                 this.toastr.success('Hello world!', 'Toastr fun!');
 

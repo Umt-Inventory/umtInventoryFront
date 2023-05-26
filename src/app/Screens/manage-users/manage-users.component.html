@@ -1,0 +1,58 @@
+<div class="container" *ngIf="users">
+    <div class="building-selection">
+        <h2 class="text-center">Manage Users:</h2>
+        <div class="filters">
+            <div class="search">
+                <mat-form-field appearance="fill">
+                    <mat-label>Search</mat-label>
+                    <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
+                    <button
+                        mat-button
+                        *ngIf="searchQuery"
+                        matSuffix
+                        mat-icon-button
+                        aria-label="Clear"
+                        (click)="resetFilter()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <p class="total">
+                Total Users: <b>{{ users.totalUsers }}</b>
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-6" *ngFor="let user of filteredUsers">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="upper">
+                            <h3>
+                                <b>{{ user.email }}</b>
+                            </h3>
+                            <div class="icons">
+                                <img src="../../../assets/icons/edit-icon-black.png" alt="" />
+                                <img src="../../../assets/icons/delete-icon-black.png" alt="" />
+                            </div>
+                        </div>
+                        <p>
+                            Role: <b>{{ user.role }}</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="add-card">
+                <div class="card-body">
+                    <img src="../../../assets/icons/plus-white.png" (click)="onSubmit()" alt="" />
+                    <p>Add User</p>
+                </div>
+            </div>
+        </div>
+        <mat-paginator
+            [length]="users.totalUsers"
+            [pageSize]="currentPageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            showFirstLastButtons
+            (page)="onPageChange($event)">
+        </mat-paginator>
+    </div>
+</div>

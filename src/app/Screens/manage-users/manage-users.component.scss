@@ -72,9 +72,12 @@
             align-items: center;
             justify-content: center;
             background-color: rgba(41, 171, 226, 0.5);
-            // background-color: white;
             border-radius: 10px;
             .card-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
                 img {
                     border: 2px solid white;
                     border-radius: 50%;
@@ -82,7 +85,23 @@
                     display: block;
                     height: 40px;
                 }
+                p {
+                    margin: 0;
+                    color: white;
+                }
             }
+        }
+        .add-card2 {
+            background-color: #283049;
+            .card-body {
+                img {
+                    border: none;
+                }
+            }
+        }
+
+        .add-card:hover {
+            transform: scale(1.1);
         }
     }
 }

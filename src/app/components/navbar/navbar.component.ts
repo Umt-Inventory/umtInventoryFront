@@ -7,7 +7,9 @@ import {Router} from '@angular/router';
     styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
+    emri: any = localStorage.getItem('name');
     constructor(private router: Router) {}
+
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
