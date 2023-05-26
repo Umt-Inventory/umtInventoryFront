@@ -53,7 +53,7 @@ export interface UserCreateUpdateDto {
 
 export enum UserRole {
     HR,
-    XHEMIL,
+    STOCK_PROVIDER,
     IT,
     PERSONEL,
     FINANCE,

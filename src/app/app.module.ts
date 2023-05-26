@@ -16,6 +16,8 @@ import {ItemDetailsComponent} from './Screens/item-details/item-details.componen
 import {BuildingsComponent} from './Screens/buildings/buildings.component';
 import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
 import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
+import {LoadingComponent} from './components/loading/loading.component';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
     declarations: [
@@ -29,6 +31,7 @@ import {ChangePasswordComponent} from './Auth/change-password/change-password.co
         BuildingsComponent,
         WorkspacesComponent,
         ChangePasswordComponent,
+        LoadingComponent,
     ],
     imports: [
         BrowserModule,
@@ -38,6 +41,7 @@ import {ChangePasswordComponent} from './Auth/change-password/change-password.co
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        ToastrModule.forRoot(),
         NgxsModule.forRoot([]),
     ],
     providers: [],

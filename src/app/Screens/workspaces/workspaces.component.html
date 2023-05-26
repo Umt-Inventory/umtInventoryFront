@@ -1,35 +1,52 @@
+<div class="loader" *ngIf="isLoading">
+    <app-loading></app-loading>
+</div>
+
 <div class="container" *ngIf="workspaces">
     <div class="building-selection">
         <h2 class="text-center">Choose a Workspace</h2>
-        <p class="text-center">
-            Total Workspaces: <b>{{ workspaces.totalWorkspaces }}</b>
-        </p>
-        <div class="search">
-            <mat-form-field appearance="fill">
-                <mat-label>Search</mat-label>
-                <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
-                <button
-                    mat-button
-                    *ngIf="searchQuery"
-                    matSuffix
-                    mat-icon-button
-                    aria-label="Clear"
-                    (click)="resetFilter()">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
+        <div class="filters">
+            <div class="search">
+                <mat-form-field appearance="fill">
+                    <mat-label>Search</mat-label>
+                    <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
+                    <button
+                        mat-button
+                        *ngIf="searchQuery"
+                        matSuffix
+                        mat-icon-button
+                        aria-label="Clear"
+                        (click)="resetFilter()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <p class="total">
+                Total Workspaces: <b>{{ workspaces.totalWorkspaces }}</b>
+            </p>
         </div>
         <div class="row">
             <div class="col-md-6" *ngFor="let workspace of filteredWorkspaces">
-                <div class="card">
+                <div class="card" (click)="onSubmit()">
                     <div class="card-body">
-                        <h3>
-                            <b>{{ workspace.name }}</b>
-                        </h3>
+                        <div class="upper">
+                            <h3>
+                                <b>{{ workspace.name }}</b>
+                            </h3>
+                            <div class="icons">
+                                <img src="../../../assets/icons/edit-icon-black.png" alt="" />
+                                <img src="../../../assets/icons/delete-icon-black.png" alt="" />
+                            </div>
+                        </div>
                         <p>
                             Lloji: <b>{{ workspace.type }}</b>
                         </p>
                     </div>
+                </div>
+            </div>
+            <div class="add-card">
+                <div class="card-body">
+                    <img src="../../../assets/icons/plus-white.png" alt="" />
                 </div>
             </div>
         </div>

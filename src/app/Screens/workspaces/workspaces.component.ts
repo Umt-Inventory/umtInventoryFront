@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 import {PaginatedWorkspace, WorkspaceDto, WorkspaceService} from '../services/workspace.service';
 
 @Component({
@@ -12,8 +12,9 @@ export class WorkspacesComponent implements OnInit {
     workspaces!: PaginatedWorkspace<WorkspaceDto>;
     searchQuery = '';
     filteredWorkspaces: WorkspaceDto[] = [];
+    isLoading: boolean = true;
 
-    constructor(private route: ActivatedRoute, private workspaceService: WorkspaceService) {}
+    constructor(private route: ActivatedRoute, private workspaceService: WorkspaceService, private router: Router) {}
 
     ngOnInit() {
         this.building = this.route.snapshot.paramMap.get('id') || '';
@@ -22,6 +23,9 @@ export class WorkspacesComponent implements OnInit {
             (response) => {
                 this.workspaces = response;
                 this.filteredWorkspaces = [...this.workspaces.workspace];
+                setTimeout(() => {
+                    this.isLoading = false;
+                }, 1000);
             },
             (error) => console.error('There was an error: ', error)
         );
@@ -31,6 +35,9 @@ export class WorkspacesComponent implements OnInit {
         this.filteredWorkspaces = this.workspaces.workspace.filter((workspace) =>
             workspace.name.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
+    }
+    onSubmit() {
+        this.router.navigate(['/items']);
     }
 
     resetFilter() {
