@@ -10,13 +10,26 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FooterComponent} from './components/footer/footer.component';
 import {NgxsModule} from '@ngxs/store';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { ItemsComponent } from './Screens/items/items.component';
-import { ItemDetailsComponent } from './Screens/item-details/item-details.component';
-import { BuildingsComponent } from './Screens/buildings/buildings.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {ItemsComponent} from './Screens/items/items.component';
+import {ItemDetailsComponent} from './Screens/item-details/item-details.component';
+import {BuildingsComponent} from './Screens/buildings/buildings.component';
+import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
+import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, RegisterComponent, FooterComponent, NavbarComponent, ItemsComponent, ItemDetailsComponent, BuildingsComponent],
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        FooterComponent,
+        NavbarComponent,
+        ItemsComponent,
+        ItemDetailsComponent,
+        BuildingsComponent,
+        WorkspacesComponent,
+        ChangePasswordComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
