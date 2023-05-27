@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {PaginatedWorkspace, WorkspaceDto, WorkspaceService} from '../services/workspace.service';
-import { ToastrService } from 'ngx-toastr';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-workspaces',
@@ -15,8 +15,12 @@ export class WorkspacesComponent implements OnInit {
     filteredWorkspaces: WorkspaceDto[] = [];
     isLoading: boolean = true;
 
-    constructor(private route: ActivatedRoute, private workspaceService: WorkspaceService, private router: Router, private toastr: ToastrService
-        ) {}
+    constructor(
+        private route: ActivatedRoute,
+        private workspaceService: WorkspaceService,
+        private router: Router,
+        private toastr: ToastrService
+    ) {}
 
     ngOnInit() {
         this.building = this.route.snapshot.paramMap.get('id') || '';
@@ -25,12 +29,13 @@ export class WorkspacesComponent implements OnInit {
             (response) => {
                 this.workspaces = response;
                 this.filteredWorkspaces = [...this.workspaces.workspace];
-                setTimeout(() => {
-                    this.isLoading = false;
-                }, 1000);
+
+                this.isLoading = false;
             },
-           (error)=>{ this.toastr.error('Error');}
-            );
+            (error) => {
+                this.toastr.error('Error');
+            }
+        );
     }
 
     applyFilter() {
@@ -48,7 +53,7 @@ export class WorkspacesComponent implements OnInit {
         this.applyFilter();
     }
 
-    goToAddWorkspace(){
+    goToAddWorkspace() {
         this.router.navigate(['add-workspace']);
     }
 }
