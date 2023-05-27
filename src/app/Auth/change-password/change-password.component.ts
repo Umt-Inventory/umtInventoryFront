@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-change-password',
@@ -13,7 +14,9 @@ export class ChangePasswordComponent {
 
     constructor(
         private formBuilder: FormBuilder,
-        private userService: UserService // Injecting the user service
+        private userService: UserService, // Injecting the user service
+        private toastr: ToastrService
+
     ) {}
 
     ngOnInit() {
@@ -36,16 +39,18 @@ export class ChangePasswordComponent {
                 this.userService.ChangePassword(Number(userId), oldPassword, newPassword).subscribe({
                     next: () => {
                         this.myForm.reset();
-                        alert('Password successfully changed!');
+                        this.toastr.success('Fjalekalimi  u ndryshua me sukses!');
                     },
                     error: (error) => {
                         // Handle error here
                         console.error(error);
+                        this.toastr.error('Error');
                     },
                 });
             } else {
                 // Handle the case when the user ID is not found in local storage
-                console.error('User ID not found in local storage');
+                this.toastr.error('Nuk u gjet perdorues me kete ID.');
+                
             }
         }
     }

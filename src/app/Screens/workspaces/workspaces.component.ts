@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {PaginatedWorkspace, WorkspaceDto, WorkspaceService} from '../services/workspace.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-workspaces',
@@ -14,7 +15,8 @@ export class WorkspacesComponent implements OnInit {
     filteredWorkspaces: WorkspaceDto[] = [];
     isLoading: boolean = true;
 
-    constructor(private route: ActivatedRoute, private workspaceService: WorkspaceService, private router: Router) {}
+    constructor(private route: ActivatedRoute, private workspaceService: WorkspaceService, private router: Router, private toastr: ToastrService
+        ) {}
 
     ngOnInit() {
         this.building = this.route.snapshot.paramMap.get('id') || '';
@@ -27,8 +29,8 @@ export class WorkspacesComponent implements OnInit {
                     this.isLoading = false;
                 }, 1000);
             },
-            (error) => console.error('There was an error: ', error)
-        );
+           (error)=>{ this.toastr.error('Error');}
+            );
     }
 
     applyFilter() {

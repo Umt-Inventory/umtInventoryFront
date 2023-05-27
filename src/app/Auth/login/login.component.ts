@@ -26,10 +26,16 @@ export class LoginComponent {
     ) {}
 
     ngOnInit() {
+        this.logout()   
         this.myForm = this.userFB.group({
             email: ['', [Validators.required]],
             password: [null, Validators.compose([Validators.required])],
         });
+    }
+    logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        
     }
 
     onSubmit() {
@@ -51,7 +57,7 @@ export class LoginComponent {
                 localStorage.setItem('name', this.decodedToken.unique_name);
 
                 this.loginSuccesFlag = true;
-                this.toastr.success('Logim i susesshem', 'Ju u loguat me sukses!');
+                this.toastr.success('Logim i suksesshem', 'Ju u loguat me sukses!');
 
                 this.router.navigate(['buildings']);
             },

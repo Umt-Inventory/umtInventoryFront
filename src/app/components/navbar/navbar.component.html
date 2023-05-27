@@ -9,17 +9,14 @@
                 </div>
                 <mat-menu class="hamburger-menu" #menu="matMenu">
                     <a mat-menu-item routerLink="/buildings">Workspaces</a>
-
                     <a mat-menu-item routerLink="/requests">Requests</a>
-
-                    <a mat-menu-item routerLink="/manage-users">Manage Users</a>
+                    <a mat-menu-item *ngIf="isHrRole()" routerLink="/manage-users">Manage Users</a>
                     <a mat-menu-item routerLink="/change-password">Change Password</a>
-
                     <div mat-menu-item class="button button-logout" (click)="logout()">
-                        <!-- <span class="material-icons">logout</span> -->
-                        <span>Logout</span>
+                      <span>Logout</span>
                     </div>
-                </mat-menu>
+                  </mat-menu>
+                  
             </div>
         </div>
     </div>
