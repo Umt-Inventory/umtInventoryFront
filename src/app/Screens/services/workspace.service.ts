@@ -9,13 +9,6 @@ import {environment} from 'src/environments/environment';
 export class WorkspaceService {
     constructor(private httpClient: HttpClient) {}
 
-    // Login(email: string, password: string) {
-    //     return this.httpClient.post<ILoginResponse>(`${environment.baseUrl}/api/Auth/Login`, {
-    //         Email: email,
-    //         Password: password,
-    //     });
-    // }
-
     getPaginatedWorkspaces(
         page: number = 1,
         pageSize: number = 100,

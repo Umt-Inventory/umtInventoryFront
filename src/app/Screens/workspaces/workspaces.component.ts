@@ -36,8 +36,9 @@ export class WorkspacesComponent implements OnInit {
             workspace.name.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
     }
-    onSubmit() {
-        this.router.navigate(['/items']);
+    onSubmit(workspaceId: number) {
+        // Accept workspace ID as parameter
+        this.router.navigate(['items', workspaceId]); // Navigate to "items" component with the ID
     }
 
     resetFilter() {
