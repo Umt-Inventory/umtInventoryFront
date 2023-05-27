@@ -8,6 +8,7 @@ import {BuildingsComponent} from './Screens/buildings/buildings.component';
 import {AuthGuard} from './guards/auth.guard';
 import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
 import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
+import {ManageUsersComponent} from './Screens/manage-users/manage-users.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,11 @@ const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent,
+    },
+    {
+        path: 'manage-users',
+        component: ManageUsersComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'buildings',

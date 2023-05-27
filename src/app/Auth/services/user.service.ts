@@ -8,6 +8,12 @@ import {environment} from 'src/environments/environment';
 export class UserService {
     constructor(private httpClient: HttpClient) {}
 
+    getUsers(page: number = 1, pageSize: number = 10, filterUserRole: UserRole = UserRole.IT) {
+        const url = `${environment.baseUrl}/api/User?page=${page}&pageSize=${pageSize}&filterUserRole=${filterUserRole}`;
+
+        return this.httpClient.get<PaginatedUsers<UserDto>>(url);
+    }
+
     ChangePassword(id: number, oldPassword: string, newPassword: string) {
         return this.httpClient.post(`${environment.baseUrl}/api/User/ChangePassword`, {
             Id: id,
@@ -26,6 +32,10 @@ export class UserService {
             Password: password,
         });
     }
+
+    deleteUser(userId: number) {
+        return this.httpClient.delete(`${environment.baseUrl}/api/User/DeleteUser/${userId}`);
+    }
 }
 
 interface ILoginResponse {
@@ -37,7 +47,6 @@ export interface UserDto {
     email: string;
     role: UserRole;
     phone: string;
-    workspaceID: number;
 }
 
 export interface UserCreateUpdateDto {
@@ -48,12 +57,17 @@ export interface UserCreateUpdateDto {
     password: string;
     role: UserRole;
     phone: string;
-    workspaceID: number;
 }
-
+export interface PaginatedUsers<T> {
+    users: T[];
+    totalUsers: number;
+    page: number;
+    pageSize: number;
+    filterUserRole: UserRole;
+}
 export enum UserRole {
     HR,
-    XHEMIL,
+    STOCK_PROVIDER,
     IT,
     PERSONEL,
     FINANCE,

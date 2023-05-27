@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
             password: [null, Validators.compose([Validators.required])],
             role: ['', [Validators.required]], // Add Role to the form
             phone: [''], // Add phone to the form
-            workspaceID: [0], // Add workspaceID to the form
         });
     }
 
@@ -43,7 +42,6 @@ export class RegisterComponent implements OnInit {
             password: this.myForm.controls['password'].value.trim(),
             role: this.myForm.controls['role'].value,
             phone: this.myForm.controls['phone'].value.trim(),
-            workspaceID: this.myForm.controls['workspaceID'].value,
         };
 
         this.userService.addEditUser(userDto).subscribe({

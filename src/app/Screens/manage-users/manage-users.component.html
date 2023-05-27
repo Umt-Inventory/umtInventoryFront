@@ -1,10 +1,6 @@
-<div class="loader" *ngIf="isLoading">
-    <app-loading></app-loading>
-</div>
-
-<div class="container" *ngIf="workspaces">
+<div class="container" *ngIf="users">
     <div class="building-selection">
-        <h2 class="text-center">Choose a Workspace</h2>
+        <h2 class="text-center">Manage Users:</h2>
         <div class="filters">
             <div class="search">
                 <mat-form-field appearance="fill">
@@ -22,33 +18,44 @@
                 </mat-form-field>
             </div>
             <p class="total">
-                Total Workspaces: <b>{{ workspaces.totalWorkspaces }}</b>
+                Total Users: <b>{{ users.totalUsers }}</b>
             </p>
         </div>
         <div class="row">
-            <div class="col-md-6" *ngFor="let workspace of filteredWorkspaces">
-                <div class="card" (click)="onSubmit()">
+            <div class="col-md-6" *ngFor="let user of filteredUsers">
+                <div class="card">
                     <div class="card-body">
                         <div class="upper">
                             <h3>
-                                <b>{{ workspace.name }}</b>
+                                <b>{{ user.email }}</b>
                             </h3>
                             <div class="icons">
                                 <img src="../../../assets/icons/edit-icon-black.png" alt="" />
-                                <img src="../../../assets/icons/delete-icon-black.png" alt="" />
+                                <img
+                                    src="../../../assets/icons/delete-icon-black.png"
+                                    alt=""
+                                    (click)="deleteUser(user.id)" />
                             </div>
                         </div>
                         <p>
-                            Lloji: <b>{{ workspace.type }}</b>
+                            Role: <b>{{ user.role }}</b>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="add-card">
                 <div class="card-body">
-                    <img src="../../../assets/icons/plus-white.png" alt="" />
+                    <img src="../../../assets/icons/plus-white.png" (click)="onSubmit()" alt="" />
+                    <p>Add User</p>
                 </div>
             </div>
         </div>
+        <mat-paginator
+            [length]="users.totalUsers"
+            [pageSize]="currentPageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            showFirstLastButtons
+            (page)="onPageChange($event)">
+        </mat-paginator>
     </div>
 </div>

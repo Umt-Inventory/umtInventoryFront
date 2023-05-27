@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {TokenServiceService} from '../services/token-service.service';
 import {UserService} from '../services/user.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
         private router: Router,
         private userFB: FormBuilder,
         private userService: UserService,
-        private tokenService: TokenServiceService
+        private tokenService: TokenServiceService,
+        private toastr: ToastrService
     ) {}
 
     ngOnInit() {
@@ -46,11 +48,16 @@ export class LoginComponent {
                 console.log(this.decodedToken); // This will print decoded token data on the console
                 localStorage.setItem('role', this.decodedToken.role);
                 localStorage.setItem('id', this.decodedToken.nameid);
+                localStorage.setItem('name', this.decodedToken.unique_name);
+
                 this.loginSuccesFlag = true;
+                this.toastr.success('Logim i susesshem', 'Ju u loguat me sukses!');
+
                 this.router.navigate(['buildings']);
             },
             error: (error) => {
                 console.log(error);
+                this.toastr.error('Logimi deshtoi', 'Email-i ose Fjalekalimi i pasakte');
                 this.hasFormErrors = true;
             },
         });

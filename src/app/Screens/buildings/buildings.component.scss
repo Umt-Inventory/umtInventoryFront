@@ -1,27 +1,27 @@
 .building-selection {
     margin-top: 5rem;
     .row {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 2rem;
         div {
             width: 100%;
             .card {
                 border: 1px solid #ccc;
-                border-radius: 6px;
+                border-radius: 10px;
                 cursor: pointer;
-                margin-bottom: 20px;
                 &:hover {
                     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                    background-color: white;
                 }
 
                 .card-body {
                     padding: 20px;
                     h3 {
-                        margin-top: 0;
+                        margin: 0;
                     }
                     p {
-                        margin-bottom: 0;
+                        margin: 0;
                     }
                 }
             }

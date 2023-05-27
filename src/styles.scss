@@ -1,5 +1,6 @@
 @import '../src/Variables.scss';
-@import url('https://fonts.googleapis.com/css?family=Inter');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 // Mobile media queries
 // BEGIN: Temporary account stepper container
@@ -39,7 +40,7 @@ body {
 
 body {
     background-color: $lightGray;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif !important;
 }
 
 .auth {
@@ -87,10 +88,7 @@ body {
 .blank {
     display: none;
 }
-.buton-bisha {
-    width: 100px;
-    padding: 12px 0;
-}
+
 .mat-tab-label .mat-tab-label-content {
     display: inline-flex;
     justify-content: center;
@@ -369,6 +367,10 @@ input[type='number'] {
 
 .cdk-overlay-backdrop .cdk-overlay-transparent-backdrop .cdk-overlay-backdrop-showing {
     -webkit-tap-highlight-color: transparent;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent;
 }
 
 // Desktop media queries

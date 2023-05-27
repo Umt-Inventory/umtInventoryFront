@@ -1,12 +1,29 @@
-.items {
-    background-image: url('../../../assets/Background/background1.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: 'Inter';
-    position: relative;
+.container {
+    margin-top: 5rem;
+    .filters {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 10px;
+        background-color: white;
+        border-radius: 20px;
+        margin-bottom: 2rem;
+        box-shadow: 0px 0px 5px 0px #ccc;
+
+        .total {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            align-items: center;
+            b {
+                padding: 15px 20px;
+                background-color: rgba(41, 171, 226, 0.5);
+                border-radius: 50%;
+            }
+        }
+    }
     .itemtable {
         display: flex;
-        margin-top: 5rem;
         .mat-elevation-z8 {
             border-radius: 14px;
             max-width: 1700px;
