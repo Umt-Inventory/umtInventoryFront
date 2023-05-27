@@ -1,0 +1,45 @@
+<body class="auth">
+    <div class="login-container">
+        <img class="logo" src="../../../assets/UMT Inventory/umtinventoy 1.svg" alt="" />
+        <div class="login-body-container">
+            <div class="login-header"><p class="login-title">Add Item</p></div>
+            <form [formGroup]="myForm" class="forma">
+                <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+                    <mat-label for="name">Name:</mat-label>
+                    <input matInput type="text" formControlName="name" placeholder="Name" autocomplete="off" />
+                    <mat-error *ngIf="myForm.controls['name'].invalid && myForm.controls['name'].touched"> Name is required </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+                    <mat-label for="price">Price:</mat-label>
+                    <input matInput type="number" formControlName="price" placeholder="Price" autocomplete="off" />
+                    <mat-error *ngIf="myForm.controls['price'].invalid && myForm.controls['price'].touched"> Invalid price </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+                    <mat-label for="quantity">Quantity:</mat-label>
+                    <input matInput type="number" formControlName="quantity" placeholder="Quantity" autocomplete="off" />
+                    <mat-error *ngIf="myForm.controls['quantity'].invalid && myForm.controls['quantity'].touched"> Invalid quantity </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="bisha">
+                    <mat-label>Condition</mat-label>
+                    <mat-select formControlName="condition">
+                        <mat-option *ngFor="let condition of conditions" [value]="condition">{{ condition }}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="myForm.controls['condition'].invalid && myForm.controls['condition'].touched"> Please select a condition </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+                    <mat-label for="description">Description:</mat-label>
+                    <textarea matInput formControlName="description" placeholder="Description" autocomplete="off"></textarea>
+                    <mat-error *ngIf="myForm.controls['description'].invalid && myForm.controls['description'].touched"> Description is required </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="bisha">
+                    <mat-label>Type</mat-label>
+                    <mat-select formControlName="type">
+                        <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="myForm.controls['type'].invalid && myForm.controls['type'].touched"> Please select a type </mat-error>
+                </mat-form-field>
+                <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">Add Item</button>
+            </form>
+        </div>
+    </div>
+</body>
