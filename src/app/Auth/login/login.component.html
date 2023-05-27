@@ -26,13 +26,12 @@
                     </button>
                     <mat-error *ngIf="myForm.controls['password'].invalid"> Incorrect password </mat-error>
                 </mat-form-field>
-                <!-- <p>Dont have an account? <a routerLink="/register">Register</a></p> -->
+
                 <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">Login</button>
-<!-- <br />
+                <!-- <br />
                 <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">
                     Microsoft Account
                 </button> -->
-                <a routerLink="/items">Go to items</a>
             </form>
         </div>
     </div>

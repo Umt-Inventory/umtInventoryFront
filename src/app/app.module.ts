@@ -18,9 +18,11 @@ import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
 import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
 import {LoadingComponent} from './components/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
-import { ManageUsersComponent } from './Screens/manage-users/manage-users.component';
-import { AddWorkspaceComponent } from './Screens/add-workspace/add-workspace.component';
-import { AddItemComponent } from './Screens/add-item/add-item.component';
+import {ManageUsersComponent} from './Screens/manage-users/manage-users.component';
+import {AddWorkspaceComponent} from './Screens/add-workspace/add-workspace.component';
+import {AddItemComponent} from './Screens/add-item/add-item.component';
+import {DialogItemComponent} from './components/dialog-item/dialog-item.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -38,6 +40,7 @@ import { AddItemComponent } from './Screens/add-item/add-item.component';
         ManageUsersComponent,
         AddWorkspaceComponent,
         AddItemComponent,
+        DialogItemComponent,
     ],
     imports: [
         BrowserModule,
@@ -46,6 +49,7 @@ import { AddItemComponent } from './Screens/add-item/add-item.component';
         MaterialExampleModule,
         FormsModule,
         ReactiveFormsModule,
+        MatDialogModule,
         HttpClientModule,
         ToastrModule.forRoot(),
         NgxsModule.forRoot([]),

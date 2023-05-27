@@ -18,8 +18,14 @@
         <p class="total">
             Total Workspaces: <b>{{ totalItems }}</b>
         </p>
-        <a (click)="goToAddItem(workspaceId)">Add items</a>
 
+        <button mat-raised-button mat-button color="primary" (click)="goToAddItem(workspaceId)">
+            <mat-icon>add</mat-icon>
+            Shto
+        </button>
+        <button mat-fab color="primary">
+            <mat-icon>download</mat-icon>
+        </button>
     </div>
 
     <div class="itemtable">

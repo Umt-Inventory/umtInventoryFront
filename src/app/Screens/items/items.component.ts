@@ -2,9 +2,10 @@ import {Component, ViewChild, AfterViewInit} from '@angular/core';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {ItemDto, ItemService, PaginatedItems} from '../services/item.service';
+import {ItemDto, ItemService, PaginatedItems, UserType} from '../services/item.service';
 import {PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UserRole} from 'src/app/Auth/services/user.service';
 
 @Component({
     selector: 'app-items',
@@ -20,16 +21,17 @@ export class ItemsComponent implements AfterViewInit {
     pageSize: number = 5;
     pageIndex: number = 0;
     workspaceId: any; // You may want to fetch this value dynamically
-
+    currentUserRole: string | null = null; // Stores the current user role
     totalItems: number = 0;
     pageSizeOptions: number[] = [5, 10, 25, 100];
     currentPageSize: number = 5;
+    userRoles = Object.keys(UserRole).filter((key) => isNaN(Number(key)));
 
     constructor(
         private _liveAnnouncer: LiveAnnouncer,
         private itemService: ItemService,
         private route: ActivatedRoute,
-        private router:Router
+        private router: Router
     ) {
         // Inject the service
     }
@@ -38,6 +40,7 @@ export class ItemsComponent implements AfterViewInit {
     }
     ngOnInit() {
         this.workspaceId = this.route.snapshot.paramMap.get('id') || '';
+        this.currentUserRole = localStorage.getItem('role'); // Get the user's role from local storage
     }
 
     ngAfterViewInit() {
@@ -47,8 +50,18 @@ export class ItemsComponent implements AfterViewInit {
         }
     }
     fetchItems(page: number = 1, pageSize: number = this.currentPageSize) {
+        let filterUserType: UserType | undefined = undefined;
+
+        // Set filterUserType based on the user's role
+        if (this.currentUserRole === 'HR') {
+            // If the role is 'HR', don't filter by user type
+            filterUserType = undefined;
+        } else if (this.currentUserRole && this.userRoles.includes(this.currentUserRole)) {
+            filterUserType = this.currentUserRole as UserType;
+        }
+
         this.itemService
-            .getPaginatedItems(this.workspaceId, page, pageSize)
+            .getPaginatedItems(this.workspaceId, page, pageSize, filterUserType)
             .subscribe((paginatedItems: PaginatedItems<ItemDto>) => {
                 this.dataSource.data = paginatedItems.items;
                 this.totalItems = paginatedItems.totalItems;

@@ -8,32 +8,28 @@ import {environment} from 'src/environments/environment';
 })
 export class ItemService {
     constructor(private httpClient: HttpClient) {}
-    
 
     getPaginatedItems(
         workspaceId: number,
         page: number = 1,
         pageSize: number = 10,
-        filterUserType: string = 'IT'
+        filterUserType?: UserType
     ): Observable<PaginatedItems<ItemDto>> {
-        let params = new HttpParams()
-            .set('page', page.toString())
-            .set('pageSize', pageSize.toString())
-            .set('filterUserType', filterUserType);
+        let params = new HttpParams().set('page', page.toString()).set('pageSize', pageSize.toString());
+
+        if (filterUserType !== undefined) {
+            params = params.set('filterUserType', filterUserType.toString());
+        }
 
         return this.httpClient.get<PaginatedItems<ItemDto>>(
             `${environment.baseUrl}/api/Item/GetPaginatedItems/${workspaceId}`,
             {params}
         );
-        
     }
-    addEditItem(item: ItemDto){
-        return this.httpClient.post<ItemDto>(
-          `${environment.baseUrl}/api/Item/AddEditItem`,
-          item
-        );
-      }
-    
+
+    addEditItem(item: ItemDto) {
+        return this.httpClient.post<ItemDto>(`${environment.baseUrl}/api/Item/AddEditItem`, item);
+    }
 }
 export interface ItemDto {
     id?: number; // Make the 'id' property optional
@@ -42,10 +38,9 @@ export interface ItemDto {
     condition: Condition;
     description: string;
     name: string;
-    type?: UserType;
-    workspaceId:number;
-  }
-  
+    type: UserType;
+    workspaceId: number;
+}
 
 // paginated-items.model.ts
 export interface PaginatedItems<T> {
@@ -53,17 +48,17 @@ export interface PaginatedItems<T> {
     totalItems: number;
     page: number;
     pageSize: number;
-    filterUserType: string;
+    filterUserType?: UserType;
 }
 
 export enum UserType {
-    STOCK_PROVIDER=   "STOCK_PROVIDER",
-    IT="IT",
+    STOCK_PROVIDER = 'STOCK_PROVIDER',
+    IT = 'IT',
 }
 export enum Condition {
-    NEW ="NEW",
-    USED ="USED",
-    DAMAGED ="DAMAGED",
-    OPEN_BOX ="OPEN_BOX",
-    LIKE_NEW="LIKE_NEW"
+    NEW = 'NEW',
+    USED = 'USED',
+    DAMAGED = 'DAMAGED',
+    OPEN_BOX = 'OPEN_BOX',
+    LIKE_NEW = 'LIKE_NEW',
 }
