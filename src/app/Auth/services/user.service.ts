@@ -32,6 +32,10 @@ export class UserService {
             Password: password,
         });
     }
+
+    deleteUser(userId: number) {
+        return this.httpClient.delete(`${environment.baseUrl}/api/User/DeleteUser/${userId}`);
+    }
 }
 
 interface ILoginResponse {

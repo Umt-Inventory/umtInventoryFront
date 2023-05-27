@@ -51,12 +51,13 @@ export class LoginComponent {
                 localStorage.setItem('name', this.decodedToken.unique_name);
 
                 this.loginSuccesFlag = true;
-                this.toastr.success('Hello world!', 'Toastr fun!');
+                this.toastr.success('Logim i susesshem', 'Ju u loguat me sukses!');
 
                 this.router.navigate(['buildings']);
             },
             error: (error) => {
                 console.log(error);
+                this.toastr.error('Logimi deshtoi', 'Email-i ose Fjalekalimi i pasakte');
                 this.hasFormErrors = true;
             },
         });

@@ -68,4 +68,18 @@ export class ManageUsersComponent implements OnInit {
         this.searchQuery = '';
         this.applyFilter();
     }
+
+    deleteUser(userId: number) {
+        this.userService.deleteUser(userId).subscribe({
+            next: (response) => {
+                console.log(response);
+
+                // Successful deletion, now fetch updated user list
+                this.getUsers();
+            },
+            error: (error) => {
+                console.error('Failed to delete user:', error);
+            },
+        });
+    }
 }
