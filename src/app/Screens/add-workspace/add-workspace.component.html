@@ -1,0 +1,32 @@
+<body class="auth">
+  <div class="login-container">
+    <img class="logo" src="../../../assets/UMT Inventory/umtinventoy 1.svg" alt="" />
+    <div class="login-body-container">
+      <div class="login-header">
+        <p class="login-title">Add Workspace</p>
+      </div>
+      <form [formGroup]="myForm" class="forma">
+        <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+          <mat-label for="name">Name:</mat-label>
+          <input matInput type="text" formControlName="name" placeholder="Name" autocomplete="off" />
+          <mat-error *ngIf="myForm.controls['name'].invalid">Incorrect name</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+          <mat-label>Type:</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let type of workspaceTypes" [value]="type">{{ type }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="myForm.controls['type'].invalid">Please select a type</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
+          <mat-label for="building">Building:</mat-label>
+          <mat-select formControlName="building">
+            <mat-option *ngFor="let building of buildingOptions" [value]="building">{{ building }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="myForm.controls['building'].invalid">Incorrect building</mat-error>
+        </mat-form-field>
+        <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">Add Workspace</button>
+      </form>
+    </div>
+  </div>
+</body>

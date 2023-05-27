@@ -19,6 +19,7 @@ import {ChangePasswordComponent} from './Auth/change-password/change-password.co
 import {LoadingComponent} from './components/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import { ManageUsersComponent } from './Screens/manage-users/manage-users.component';
+import { AddWorkspaceComponent } from './Screens/add-workspace/add-workspace.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { ManageUsersComponent } from './Screens/manage-users/manage-users.compon
         ChangePasswordComponent,
         LoadingComponent,
         ManageUsersComponent,
+        AddWorkspaceComponent,
     ],
     imports: [
         BrowserModule,

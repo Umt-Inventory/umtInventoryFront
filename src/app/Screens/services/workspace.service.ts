@@ -25,16 +25,37 @@ export class WorkspaceService {
             {params}
         );
     }
+
+    addEditWorkspace(workspaceDto: WorkspaceDto) {
+        return this.httpClient.post<WorkspaceDto>(
+          `${environment.baseUrl}/api/Workspace/AddEditWorkspace`,
+          workspaceDto
+        );
+      }
 }
 
 // workspace-dto.model.ts
-export interface WorkspaceDto {
+export enum Building {
+    G1 = "G1",
+    G2 = "G2",
+    
+  }
+  
+export enum WorkspaceType {
+    Klase = "Klase",
+    Depo = "Depo",
+    Laborator = "Laborator",
+    Zyre = "Zyre",
+  }
+  
+  export interface WorkspaceDto {
     id: number;
     name: string;
-    type: string; // Change this to the actual type
-    building: string; // Change this to the actual type
+    type: WorkspaceType;
+    building: Building;
     items?: any;
-}
+  }
+  
 
 // paginated-workspace.model.ts
 export interface PaginatedWorkspace<T> {

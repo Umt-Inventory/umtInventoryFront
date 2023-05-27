@@ -47,4 +47,8 @@ export class WorkspacesComponent implements OnInit {
         this.searchQuery = '';
         this.applyFilter();
     }
+
+    goToAddWorkspace(){
+        this.router.navigate(['add-workspace']);
+    }
 }

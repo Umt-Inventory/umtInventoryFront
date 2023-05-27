@@ -9,6 +9,7 @@ import {AuthGuard} from './guards/auth.guard';
 import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
 import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
 import {ManageUsersComponent} from './Screens/manage-users/manage-users.component';
+import { AddWorkspaceComponent } from './Screens/add-workspace/add-workspace.component';
 
 const routes: Routes = [
     {
@@ -51,6 +52,11 @@ const routes: Routes = [
         component: ItemDetailsComponent,
         canActivate: [AuthGuard],
     },
+    {
+        path: 'add-workspace',
+        component: AddWorkspaceComponent,
+        canActivate: [AuthGuard],
+    }
 ];
 
 @NgModule({
