@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserCreateUpdateDto, UserRole, UserService} from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
     hide = true;
     userRoles = Object.keys(UserRole).filter((key) => isNaN(Number(key))); // To populate the role dropdown
 
-    constructor(private router: Router, private userFB: FormBuilder, private userService: UserService) {}
+    constructor(private router: Router, private userFB: FormBuilder, private userService: UserService,private toastr: ToastrService ) {}
 
     ngOnInit() {
         this.myForm = this.userFB.group({
@@ -30,6 +31,8 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         if (this.myForm.invalid) {
+            
+            this.toastr.error('Formati i regjistrimit i pasakte!');
             this.hasFormErrors = true;
             return;
         }
@@ -46,15 +49,13 @@ export class RegisterComponent implements OnInit {
 
         this.userService.addEditUser(userDto).subscribe({
             next: (response) => {
-                console.log(response);
-                console.log('Registration successful');
                 this.registerSuccessFlag = true;
-
-                this.router.navigate(['']); // replace 'buildings' with your own path
+                this.toastr.success('Regjistrimi u krye me sukses');
+                this.router.navigate(['manage-users']); // replace 'buildings' with your own path
             },
             error: (error) => {
-                console.log('Registration failed');
                 this.hasFormErrors = true;
+                this.toastr.error('Regjistrimi deshtoi!');
                 // handle error
             },
         });

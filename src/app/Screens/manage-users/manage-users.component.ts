@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import {PaginatedUsers, UserDto, UserRole, UserService} from 'src/app/Auth/services/user.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class ManageUsersComponent implements OnInit {
     pageSizeOptions: number[] = [3, 5, 10, 25, 100];
     currentPageSize: number = 3;
 
-    constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) {}
+    constructor(private route: ActivatedRoute, private userService: UserService, private router: Router,private toastr: ToastrService   ) {}
 
     ngOnInit() {
         this.getUsers();
@@ -26,7 +27,11 @@ export class ManageUsersComponent implements OnInit {
         this.userService.getUsers(page, pageSize, filterUserRole).subscribe({
             next: (response) => {
                 this.users = response;
-                this.filteredUsers = response.users;
+    
+                // Filter out the current user
+                const currentUserId = localStorage.getItem('id');
+                this.filteredUsers = response.users.filter(user => user.id !== Number(currentUserId));
+    
                 this.isLoading = false;
                 this.totalPages = Math.ceil(response.totalUsers / response.pageSize);
             },
@@ -73,12 +78,14 @@ export class ManageUsersComponent implements OnInit {
         this.userService.deleteUser(userId).subscribe({
             next: (response) => {
                 console.log(response);
+                this.toastr.success('Fshirja me sukses!');
 
                 // Successful deletion, now fetch updated user list
                 this.getUsers();
             },
             error: (error) => {
-                console.error('Failed to delete user:', error);
+                this.toastr.error('Fshirja pa sukses!');
+                
             },
         });
     }
