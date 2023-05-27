@@ -20,6 +20,7 @@ import {LoadingComponent} from './components/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import { ManageUsersComponent } from './Screens/manage-users/manage-users.component';
 import { AddWorkspaceComponent } from './Screens/add-workspace/add-workspace.component';
+import { AddItemComponent } from './Screens/add-item/add-item.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { AddWorkspaceComponent } from './Screens/add-workspace/add-workspace.com
         LoadingComponent,
         ManageUsersComponent,
         AddWorkspaceComponent,
+        AddItemComponent,
     ],
     imports: [
         BrowserModule,

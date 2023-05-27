@@ -10,6 +10,7 @@ import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
 import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
 import {ManageUsersComponent} from './Screens/manage-users/manage-users.component';
 import { AddWorkspaceComponent } from './Screens/add-workspace/add-workspace.component';
+import { AddItemComponent } from './Screens/add-item/add-item.component';
 
 const routes: Routes = [
     {
@@ -55,6 +56,11 @@ const routes: Routes = [
     {
         path: 'add-workspace',
         component: AddWorkspaceComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'add-item/:id',
+        component: AddItemComponent,
         canActivate: [AuthGuard],
     }
 ];

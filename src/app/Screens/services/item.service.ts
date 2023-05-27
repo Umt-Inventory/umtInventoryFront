@@ -8,6 +8,7 @@ import {environment} from 'src/environments/environment';
 })
 export class ItemService {
     constructor(private httpClient: HttpClient) {}
+    
 
     getPaginatedItems(
         workspaceId: number,
@@ -24,17 +25,27 @@ export class ItemService {
             `${environment.baseUrl}/api/Item/GetPaginatedItems/${workspaceId}`,
             {params}
         );
+        
     }
+    addEditItem(item: ItemDto){
+        return this.httpClient.post<ItemDto>(
+          `${environment.baseUrl}/api/Item/AddEditItem`,
+          item
+        );
+      }
+    
 }
 export interface ItemDto {
-    id: number;
+    id?: number; // Make the 'id' property optional
     price: number;
     quantity: number;
-    condition: string;
+    condition: Condition;
     description: string;
     name: string;
-    type: string;
-}
+    type?: UserType;
+    workspaceId:number;
+  }
+  
 
 // paginated-items.model.ts
 export interface PaginatedItems<T> {
@@ -43,4 +54,16 @@ export interface PaginatedItems<T> {
     page: number;
     pageSize: number;
     filterUserType: string;
+}
+
+export enum UserType {
+    STOCK_PROVIDER=   "STOCK_PROVIDER",
+    IT="IT",
+}
+export enum Condition {
+    NEW ="NEW",
+    USED ="USED",
+    DAMAGED ="DAMAGED",
+    OPEN_BOX ="OPEN_BOX",
+    LIKE_NEW="LIKE_NEW"
 }
