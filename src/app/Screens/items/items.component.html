@@ -1,8 +1,11 @@
+<div class="loader" *ngIf="isLoading">
+    <app-loading></app-loading>
+</div>
 <div class="container">
     <div class="filters">
         <div class="search">
             <mat-form-field appearance="fill">
-                <mat-label>Search</mat-label>
+                <mat-label>Kerko</mat-label>
                 <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
                 <button
                     mat-button
@@ -16,7 +19,7 @@
             </mat-form-field>
         </div>
         <p class="total">
-            Total Workspaces: <b>{{ totalItems }}</b>
+            Total : <b>{{ totalItems }}</b>
         </p>
 
         <button mat-raised-button mat-button color="primary" (click)="goToAddItem(workspaceId)">
@@ -82,6 +85,15 @@
                     </th>
                     <td mat-cell *matCellDef="let element">{{ element.condition }}</td>
                 </ng-container>
+                <!-- Edit Column -->
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef>Edit</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-button (click)="goToEditItem(element.id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
@@ -94,3 +106,4 @@
         </div>
     </div>
 </div>
+<br /><br />

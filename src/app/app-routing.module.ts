@@ -9,8 +9,9 @@ import {AuthGuard} from './guards/auth.guard';
 import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
 import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
 import {ManageUsersComponent} from './Screens/manage-users/manage-users.component';
-import { AddWorkspaceComponent } from './Screens/add-workspace/add-workspace.component';
-import { AddItemComponent } from './Screens/add-item/add-item.component';
+import {AddWorkspaceComponent} from './Screens/add-workspace/add-workspace.component';
+
+import {EditItemComponent} from './Screens/edit-item/edit-item.component';
 
 const routes: Routes = [
     {
@@ -24,7 +25,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: 'register',
+        path: 'register/:id',
         component: RegisterComponent,
         canActivate: [AuthGuard],
     },
@@ -44,6 +45,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
+        path: 'edit-item/:workspaceId/:itemId',
+        component: EditItemComponent,
+        canActivate: [AuthGuard],
+    },
+    {
         path: 'items/:id',
         component: ItemsComponent,
         canActivate: [AuthGuard],
@@ -54,15 +60,10 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: 'add-workspace',
+        path: 'add-workspace/:id',
         component: AddWorkspaceComponent,
         canActivate: [AuthGuard],
     },
-    {
-        path: 'add-item/:id',
-        component: AddItemComponent,
-        canActivate: [AuthGuard],
-    }
 ];
 
 @NgModule({

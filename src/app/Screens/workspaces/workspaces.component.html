@@ -22,7 +22,7 @@
                 </mat-form-field>
             </div>
             <p class="total">
-                Total Items: <b>{{ workspaces.totalWorkspaces }}</b>
+                Total Workspaces: <b>{{ workspaces.totalWorkspaces }}</b>
             </p>
         </div>
         <div class="row">
@@ -34,8 +34,14 @@
                                 <b>{{ workspace.name }}</b>
                             </h3>
                             <div class="icons">
-                                <img src="../../../assets/icons/edit-icon-black.png" alt="" />
-                                <img src="../../../assets/icons/delete-icon-black.png" alt="" />
+                                <div class="icons">
+                                    <mat-icon class="editDelete" (click)="goToEditWorkspace(workspace.id)"
+                                        >edit</mat-icon
+                                    >
+                                    <mat-icon class="editDelete" (click)="deleteWorkspace($event, workspace.id)"
+                                        >delete</mat-icon
+                                    >
+                                </div>
                             </div>
                         </div>
                         <p>
@@ -45,11 +51,16 @@
                 </div>
             </div>
             <div class="add-card">
-                <div class="card-body"(click)="goToAddWorkspace()" >
-                    
+                <div class="card-body" (click)="goToAddWorkspace()">
                     <img src="../../../assets/icons/plus-white.png" alt="" />
                 </div>
             </div>
         </div>
+        <mat-paginator
+            [length]="workspaces.totalWorkspaces"
+            [pageSize]="currentPageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            showFirstLastButtons
+            (page)="onPageChange($event)"></mat-paginator>
     </div>
 </div>

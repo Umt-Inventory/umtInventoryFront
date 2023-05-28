@@ -30,6 +30,13 @@ export class ItemService {
     addEditItem(item: ItemDto) {
         return this.httpClient.post<ItemDto>(`${environment.baseUrl}/api/Item/AddEditItem`, item);
     }
+
+    getItemById(itemId: number) {
+        return this.httpClient.get<ItemDtoById>(`${environment.baseUrl}/api/Item/GetItemById?id=${itemId}`);
+    }
+    deleteItem(itemId: number) {
+        return this.httpClient.delete(`${environment.baseUrl}/api/Item/DeleteItem/${itemId}`);
+    }
 }
 export interface ItemDto {
     id?: number; // Make the 'id' property optional
@@ -40,6 +47,16 @@ export interface ItemDto {
     name: string;
     type: UserType;
     workspaceId: number;
+}
+
+export interface ItemDtoById {
+    id?: number; // Make the 'id' property optional
+    price: number;
+    quantity: number;
+    condition: Condition;
+    description: string;
+    name: string;
+    type: UserType;
 }
 
 // paginated-items.model.ts

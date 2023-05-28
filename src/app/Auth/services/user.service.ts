@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -13,6 +14,10 @@ export class UserService {
 
         return this.httpClient.get<PaginatedUsers<UserDto>>(url);
     }
+    getUserById(id: number) {
+        const url = `${environment.baseUrl}/api/User/${id}`;
+        return this.httpClient.get<UserDto>(url);
+    }
 
     ChangePassword(id: number, oldPassword: string, newPassword: string) {
         return this.httpClient.post(`${environment.baseUrl}/api/User/ChangePassword`, {
@@ -23,7 +28,13 @@ export class UserService {
     }
 
     addEditUser(user: UserCreateUpdateDto) {
-        return this.httpClient.post<UserDto>(`${environment.baseUrl}/api/User/AddEditUser`, user);
+        console.log(user);
+        return this.httpClient.post<UserDto>(`${environment.baseUrl}/api/User/AddEditUser`, user).pipe(
+            catchError((err) => {
+                console.error('Error in addEditUser()', err);
+                throw err;
+            })
+        );
     }
 
     Login(email: string, password: string) {
@@ -44,6 +55,7 @@ interface ILoginResponse {
 export interface UserDto {
     id: number;
     name: string;
+    surname: string;
     email: string;
     role: UserRole;
     phone: string;
@@ -54,7 +66,7 @@ export interface UserCreateUpdateDto {
     name: string;
     email: string;
     surname: string;
-    password: string;
+    password?: string;
     role: UserRole;
     phone: string;
 }

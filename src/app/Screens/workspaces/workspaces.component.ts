@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {PaginatedWorkspace, WorkspaceDto, WorkspaceService} from '../services/workspace.service';
 import {ToastrService} from 'ngx-toastr';
+import {Subscription} from 'rxjs';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
     selector: 'app-workspaces',
@@ -13,7 +15,10 @@ export class WorkspacesComponent implements OnInit {
     workspaces!: PaginatedWorkspace<WorkspaceDto>;
     searchQuery = '';
     filteredWorkspaces: WorkspaceDto[] = [];
-    isLoading: boolean = true;
+    isLoading = true;
+    totalPages: number = 0;
+    pageSizeOptions: number[] = [5, 10, 25, 50];
+    currentPageSize: number = 5;
 
     constructor(
         private route: ActivatedRoute,
@@ -24,18 +29,22 @@ export class WorkspacesComponent implements OnInit {
 
     ngOnInit() {
         this.building = this.route.snapshot.paramMap.get('id') || '';
+        this.getWorkspaces();
+    }
 
-        this.workspaceService.getPaginatedWorkspaces(1, 100, this.building).subscribe(
-            (response) => {
+    getWorkspaces(page: number = 1, pageSize: number = this.currentPageSize) {
+        this.workspaceService.getPaginatedWorkspaces(page, pageSize, this.building).subscribe({
+            next: (response) => {
                 this.workspaces = response;
                 this.filteredWorkspaces = [...this.workspaces.workspace];
-
+                this.isLoading = false;
+                this.totalPages = Math.ceil(response.totalWorkspaces / response.pageSize);
+            },
+            error: (error) => {
+                console.error('Failed to fetch workspaces:', error);
                 this.isLoading = false;
             },
-            (error) => {
-                this.toastr.error('Error');
-            }
-        );
+        });
     }
 
     applyFilter() {
@@ -43,9 +52,10 @@ export class WorkspacesComponent implements OnInit {
             workspace.name.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
     }
-    onSubmit(workspaceId: number) {
-        // Accept workspace ID as parameter
-        this.router.navigate(['items', workspaceId]); // Navigate to "items" component with the ID
+
+    onPageChange(event: PageEvent) {
+        this.currentPageSize = event.pageSize;
+        this.getWorkspaces(event.pageIndex + 1, event.pageSize);
     }
 
     resetFilter() {
@@ -53,7 +63,29 @@ export class WorkspacesComponent implements OnInit {
         this.applyFilter();
     }
 
+    onSubmit(workspaceId: number) {
+        this.router.navigate(['items', workspaceId]);
+    }
+
+    goToEditWorkspace(workspaceId: number) {
+        this.router.navigate(['add-workspace', workspaceId]);
+    }
+
     goToAddWorkspace() {
-        this.router.navigate(['add-workspace']);
+        this.router.navigate(['add-workspace', 0]);
+    }
+
+    deleteWorkspace(event: Event, workspaceId: number) {
+        event.stopPropagation();
+
+        this.workspaceService.deleteWorkspace(workspaceId).subscribe({
+            next: (response) => {
+                this.toastr.success('Workspace deleted successfully');
+                this.getWorkspaces();
+            },
+            error: (error) => {
+                this.toastr.error('Failed to delete workspace');
+            },
+        });
     }
 }

@@ -28,34 +28,38 @@ export class WorkspaceService {
 
     addEditWorkspace(workspaceDto: WorkspaceDto) {
         return this.httpClient.post<WorkspaceDto>(
-          `${environment.baseUrl}/api/Workspace/AddEditWorkspace`,
-          workspaceDto
+            `${environment.baseUrl}/api/Workspace/AddEditWorkspace`,
+            workspaceDto
         );
-      }
+    }
+    getWorkspaceById(id: number): Observable<WorkspaceDto> {
+        return this.httpClient.get<WorkspaceDto>(`${environment.baseUrl}/api/Workspace/${id}`);
+    }
+    deleteWorkspace(id: number): Observable<any> {
+        return this.httpClient.delete<any>(`${environment.baseUrl}/api/Workspace/DeleteWorkspace/${id}`);
+    }
 }
 
 // workspace-dto.model.ts
 export enum Building {
-    G1 = "G1",
-    G2 = "G2",
-    
-  }
-  
+    G1 = 'G1',
+    G2 = 'G2',
+}
+
 export enum WorkspaceType {
-    Klase = "Klase",
-    Depo = "Depo",
-    Laborator = "Laborator",
-    Zyre = "Zyre",
-  }
-  
-  export interface WorkspaceDto {
+    Klase = 'Klase',
+    Depo = 'Depo',
+    Laborator = 'Laborator',
+    Zyre = 'Zyre',
+}
+
+export interface WorkspaceDto {
     id: number;
     name: string;
     type: WorkspaceType;
     building: Building;
     items?: any;
-  }
-  
+}
 
 // paginated-workspace.model.ts
 export interface PaginatedWorkspace<T> {

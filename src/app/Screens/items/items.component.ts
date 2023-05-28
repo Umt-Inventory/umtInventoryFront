@@ -13,10 +13,11 @@ import {UserRole} from 'src/app/Auth/services/user.service';
     styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements AfterViewInit {
-    displayedColumns: string[] = ['position', 'name', 'price', 'quantity', 'description', 'type', 'condition'];
+    displayedColumns: string[] = ['position', 'name', 'price', 'quantity', 'description', 'type', 'condition', 'edit'];
+
     dataSource: MatTableDataSource<ItemDto> = new MatTableDataSource<ItemDto>(); // Initiate the dataSource
     @ViewChild(MatSort) sort: MatSort | undefined;
-
+    isLoading = true;
     searchQuery: string = '';
     pageSize: number = 5;
     pageIndex: number = 0;
@@ -36,11 +37,12 @@ export class ItemsComponent implements AfterViewInit {
         // Inject the service
     }
     goToAddItem(workspaceId: string) {
-        this.router.navigate(['/add-item', workspaceId]);
+        this.router.navigate(['/edit-item', workspaceId, 0]);
     }
     ngOnInit() {
         this.workspaceId = this.route.snapshot.paramMap.get('id') || '';
         this.currentUserRole = localStorage.getItem('role'); // Get the user's role from local storage
+        this.isLoading = false;
     }
 
     ngAfterViewInit() {
@@ -49,6 +51,13 @@ export class ItemsComponent implements AfterViewInit {
             this.dataSource.sort = this.sort;
         }
     }
+
+    goToEditItem(itemId: number) {
+        console.log(itemId);
+
+        this.router.navigate(['/edit-item', this.workspaceId, itemId]);
+    }
+
     fetchItems(page: number = 1, pageSize: number = this.currentPageSize) {
         let filterUserType: UserType | undefined = undefined;
 

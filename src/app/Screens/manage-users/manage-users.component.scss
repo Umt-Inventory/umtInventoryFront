@@ -51,8 +51,8 @@
                         }
                         .icons {
                             display: flex;
-                            gap: 1rem;
-                            img {
+                            gap: 0.25rem;
+                            .editDelete {
                                 height: 20px;
                                 &:hover {
                                     transform: scale(1.1);
