@@ -17,7 +17,7 @@ export class ItemsComponent implements AfterViewInit {
 
     dataSource: MatTableDataSource<ItemDto> = new MatTableDataSource<ItemDto>(); // Initiate the dataSource
     @ViewChild(MatSort) sort: MatSort | undefined;
-
+    isLoading = true;
     searchQuery: string = '';
     pageSize: number = 5;
     pageIndex: number = 0;
@@ -42,6 +42,7 @@ export class ItemsComponent implements AfterViewInit {
     ngOnInit() {
         this.workspaceId = this.route.snapshot.paramMap.get('id') || '';
         this.currentUserRole = localStorage.getItem('role'); // Get the user's role from local storage
+        this.isLoading = false;
     }
 
     ngAfterViewInit() {

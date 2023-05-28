@@ -60,7 +60,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: 'add-workspace',
+        path: 'add-workspace/:id',
         component: AddWorkspaceComponent,
         canActivate: [AuthGuard],
     },

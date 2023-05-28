@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {Condition, ItemDto, ItemDtoById, ItemService, UserType} from '../services/item.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-edit-item',
@@ -17,6 +18,7 @@ export class EditItemComponent implements OnInit {
     conditions = Object.values(Condition);
     types = Object.values(UserType);
     item: ItemDtoById | undefined;
+    private deleteSubscription: Subscription | undefined;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -92,5 +94,26 @@ export class EditItemComponent implements OnInit {
                 this.toastr.error('Failed to edit item.');
             }
         );
+    }
+    onDelete() {
+        if (confirm('Are you sure you want to delete this item?')) {
+            const itemId = Number(this.itemId);
+            this.deleteSubscription = this.itemService.deleteItem(itemId).subscribe({
+                next: () => {
+                    this.toastr.success('Item deleted successfully.');
+                    this.router.navigate(['/items', this.workspaceId]);
+                },
+                error: (error) => {
+                    this.toastr.error('Failed to delete item.');
+                    console.error('Failed to delete item:', error);
+                },
+            });
+        }
+    }
+
+    ngOnDestroy() {
+        if (this.deleteSubscription) {
+            this.deleteSubscription.unsubscribe();
+        }
     }
 }

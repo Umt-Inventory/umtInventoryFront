@@ -1,8 +1,11 @@
+<div class="loader" *ngIf="isLoading">
+    <app-loading></app-loading>
+</div>
 <div class="container">
     <div class="filters">
         <div class="search">
             <mat-form-field appearance="fill">
-                <mat-label>Search</mat-label>
+                <mat-label>Kerko</mat-label>
                 <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
                 <button
                     mat-button
@@ -16,7 +19,7 @@
             </mat-form-field>
         </div>
         <p class="total">
-            Total Workspaces: <b>{{ totalItems }}</b>
+            Total : <b>{{ totalItems }}</b>
         </p>
 
         <button mat-raised-button mat-button color="primary" (click)="goToAddItem(workspaceId)">

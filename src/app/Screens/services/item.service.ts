@@ -34,6 +34,9 @@ export class ItemService {
     getItemById(itemId: number) {
         return this.httpClient.get<ItemDtoById>(`${environment.baseUrl}/api/Item/GetItemById?id=${itemId}`);
     }
+    deleteItem(itemId: number) {
+        return this.httpClient.delete(`${environment.baseUrl}/api/Item/DeleteItem/${itemId}`);
+    }
 }
 export interface ItemDto {
     id?: number; // Make the 'id' property optional
