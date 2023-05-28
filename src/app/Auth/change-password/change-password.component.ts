@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-change-password',
@@ -15,7 +16,8 @@ export class ChangePasswordComponent {
     constructor(
         private formBuilder: FormBuilder,
         private userService: UserService, // Injecting the user service
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
 
     ) {}
 
@@ -40,6 +42,8 @@ export class ChangePasswordComponent {
                     next: () => {
                         this.myForm.reset();
                         this.toastr.success('Fjalekalimi  u ndryshua me sukses!');
+                        this.router.navigate(['']);
+
                     },
                     error: (error) => {
                         // Handle error here
