@@ -1,7 +1,9 @@
 <body class="auth">
     <div class="login-container">
         <div class="login-body-container">
-            <div class="login-header"><p class="login-title">Add Item</p></div>
+            <div class="login-header">
+                <p class="login-title">{{ itemId === '0' ? 'Shto' : 'Edito' }}</p>
+            </div>
             <form [formGroup]="myForm" class="forma">
                 <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
                     <mat-label for="name">Name:</mat-label>
@@ -60,7 +62,9 @@
                         Please select a type
                     </mat-error>
                 </mat-form-field>
-                <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">Add Item</button>
+                <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">
+                    {{ itemId === '0' ? 'Shto' : 'Ruaj' }}
+                </button>
             </form>
         </div>
     </div>

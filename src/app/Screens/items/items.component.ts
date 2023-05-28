@@ -13,7 +13,8 @@ import {UserRole} from 'src/app/Auth/services/user.service';
     styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements AfterViewInit {
-    displayedColumns: string[] = ['position', 'name', 'price', 'quantity', 'description', 'type', 'condition'];
+    displayedColumns: string[] = ['position', 'name', 'price', 'quantity', 'description', 'type', 'condition', 'edit'];
+
     dataSource: MatTableDataSource<ItemDto> = new MatTableDataSource<ItemDto>(); // Initiate the dataSource
     @ViewChild(MatSort) sort: MatSort | undefined;
 
@@ -36,7 +37,7 @@ export class ItemsComponent implements AfterViewInit {
         // Inject the service
     }
     goToAddItem(workspaceId: string) {
-        this.router.navigate(['/add-item', workspaceId]);
+        this.router.navigate(['/edit-item', workspaceId, 0]);
     }
     ngOnInit() {
         this.workspaceId = this.route.snapshot.paramMap.get('id') || '';
@@ -49,6 +50,13 @@ export class ItemsComponent implements AfterViewInit {
             this.dataSource.sort = this.sort;
         }
     }
+
+    goToEditItem(itemId: number) {
+        console.log(itemId);
+
+        this.router.navigate(['/edit-item', this.workspaceId, itemId]);
+    }
+
     fetchItems(page: number = 1, pageSize: number = this.currentPageSize) {
         let filterUserType: UserType | undefined = undefined;
 
