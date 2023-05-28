@@ -30,11 +30,9 @@
                                 <b>{{ user.email }}</b>
                             </h3>
                             <div class="icons">
-                                <img src="../../../assets/icons/edit-icon-black.png" alt="" />
-                                <img
-                                    src="../../../assets/icons/delete-icon-black.png"
-                                    alt=""
-                                    (click)="deleteUser(user.id)" />
+                                <mat-icon class="editDelete" (click)="goToEdit(user.id)">edit</mat-icon>
+
+                                <mat-icon class="editDelete" (click)="deleteUser(user.id)">delete</mat-icon>
                             </div>
                         </div>
                         <p>
@@ -59,3 +57,4 @@
         </mat-paginator>
     </div>
 </div>
+<br /><br />

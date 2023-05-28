@@ -1,8 +1,9 @@
 <body class="auth">
     <div class="login-container">
-        <img class="logo" src="../../../assets/UMT Inventory/umtinventoy 1.svg" alt="" />
         <div class="login-body-container">
-            <div class="login-header"><p class="login-title">Welcome</p></div>
+            <div class="login-header">
+                <p class="login-title">{{ userId === '0' ? 'Shto' : 'Edito' }}</p>
+            </div>
             <form [formGroup]="myForm" class="forma">
                 <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
                     <mat-label for="email">Email:</mat-label>
@@ -24,7 +25,7 @@
                     <input matInput type="text" formControlName="phone" placeholder="Phone" autocomplete="off" />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="bisha">
+                <mat-form-field appearance="outline" class="bisha" *ngIf="userId === '0'" hideRequiredMarker>
                     <mat-label for="password">Password:</mat-label>
                     <input
                         matInput
@@ -41,6 +42,7 @@
                     </button>
                     <mat-error *ngIf="myForm.controls['password'].invalid"> Incorrect password </mat-error>
                 </mat-form-field>
+
                 <mat-form-field appearance="outline" class="bisha">
                     <mat-label>Role</mat-label>
                     <mat-select formControlName="role">
@@ -48,7 +50,9 @@
                     </mat-select>
                     <mat-error *ngIf="myForm.controls['role'].invalid"> Please select a role </mat-error>
                 </mat-form-field>
-                <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">Register</button>
+                <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">
+                    {{ userId === '0' ? 'Shto' : 'Ruaj' }}
+                </button>
             </form>
         </div>
     </div>

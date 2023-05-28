@@ -34,8 +34,11 @@
                                 <b>{{ workspace.name }}</b>
                             </h3>
                             <div class="icons">
-                                <img src="../../../assets/icons/edit-icon-black.png" alt="" />
-                                <img src="../../../assets/icons/delete-icon-black.png" alt="" />
+                                <div class="icons">
+                                    <mat-icon class="editDelete">edit</mat-icon>
+
+                                    <mat-icon class="editDelete">delete</mat-icon>
+                                </div>
                             </div>
                         </div>
                         <p>
@@ -45,8 +48,7 @@
                 </div>
             </div>
             <div class="add-card">
-                <div class="card-body"(click)="goToAddWorkspace()" >
-                    
+                <div class="card-body" (click)="goToAddWorkspace()">
                     <img src="../../../assets/icons/plus-white.png" alt="" />
                 </div>
             </div>

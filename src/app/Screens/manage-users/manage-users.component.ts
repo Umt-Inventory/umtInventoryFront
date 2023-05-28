@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import {ToastrService} from 'ngx-toastr';
 import {PaginatedUsers, UserDto, UserRole, UserService} from 'src/app/Auth/services/user.service';
 
 @Component({
@@ -18,7 +18,12 @@ export class ManageUsersComponent implements OnInit {
     pageSizeOptions: number[] = [3, 5, 10, 25, 100];
     currentPageSize: number = 3;
 
-    constructor(private route: ActivatedRoute, private userService: UserService, private router: Router,private toastr: ToastrService   ) {}
+    constructor(
+        private route: ActivatedRoute,
+        private userService: UserService,
+        private router: Router,
+        private toastr: ToastrService
+    ) {}
 
     ngOnInit() {
         this.getUsers();
@@ -27,11 +32,11 @@ export class ManageUsersComponent implements OnInit {
         this.userService.getUsers(page, pageSize, filterUserRole).subscribe({
             next: (response) => {
                 this.users = response;
-    
+
                 // Filter out the current user
                 const currentUserId = localStorage.getItem('id');
-                this.filteredUsers = response.users.filter(user => user.id !== Number(currentUserId));
-    
+                this.filteredUsers = response.users.filter((user) => user.id !== Number(currentUserId));
+
                 this.isLoading = false;
                 this.totalPages = Math.ceil(response.totalUsers / response.pageSize);
             },
@@ -64,9 +69,12 @@ export class ManageUsersComponent implements OnInit {
         this.isLoading = true;
         this.getUsers(1);
     }
-
+    goToEdit(userId: number) {
+        // Navigate to the registration page with the userId as a parameter
+        this.router.navigate(['register', userId]);
+    }
     onSubmit() {
-        this.router.navigate(['register']);
+        this.router.navigate(['register', 0]);
     }
 
     resetFilter() {
@@ -85,7 +93,6 @@ export class ManageUsersComponent implements OnInit {
             },
             error: (error) => {
                 this.toastr.error('Fshirja pa sukses!');
-                
             },
         });
     }
