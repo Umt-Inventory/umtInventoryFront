@@ -1,7 +1,12 @@
 <div class="loader" *ngIf="isLoading">
     <app-loading></app-loading>
 </div>
-<div class="container">
+<!-- DESKTOP SCREEN TABLE -->
+<div class="container desktop-table">
+    <button class="add-button" mat-raised-button mat-button color="primary" (click)="goToAddItem(workspaceId)">
+        <mat-icon>add</mat-icon>
+        Shto
+    </button>
     <div class="filters">
         <div class="search">
             <mat-form-field appearance="fill">
@@ -22,13 +27,7 @@
             Total : <b>{{ totalItems }}</b>
         </p>
 
-        <button mat-raised-button mat-button color="primary" (click)="goToAddItem(workspaceId)">
-            <mat-icon>add</mat-icon>
-            Shto
-        </button>
-        <button 
-        (click)="exportItems()"
-        mat-fab color="primary">
+        <button class="download-button" (click)="exportItems()" mat-fab color="primary">
             <mat-icon>download</mat-icon>
         </button>
     </div>
@@ -108,4 +107,59 @@
         </div>
     </div>
 </div>
-<br /><br />
+<!-- MOBILE SCREEN TABLE -->
+<div class="mobile-container container">
+    <button class="add-button" mat-raised-button mat-button color="primary" (click)="goToAddItem(workspaceId)">
+        <mat-icon>add</mat-icon>
+        Shto
+    </button>
+    <div class="filters">
+        <div class="search">
+            <mat-form-field appearance="fill">
+                <mat-label>Kerko</mat-label>
+                <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
+                <button
+                    mat-button
+                    *ngIf="searchQuery"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="resetFilter()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <p class="total">
+            Total : <b>{{ totalItems }}</b>
+        </p>
+    </div>
+    <div *ngFor="let item of dataSource?.data">
+        <mat-card class="item-card">
+            <mat-card-header>
+                <mat-card-title>{{ item.name }}</mat-card-title>
+                <mat-card-subtitle>{{ item.type }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>No.: {{ item.id }}</p>
+                <p>Price: {{ item.price }}</p>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p>Description: {{ item.description }}</p>
+                <p>Condition: {{ item.condition }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button *ngIf="item.id" (click)="goToEditItem(item.id)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+        <!-- </div>
+    <mat-paginator
+        [length]="totalItems"
+        [pageSize]="currentPageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChanged($event)"></mat-paginator> -->
+    </div>
+    <button class="download-button" (click)="exportItems()" mat-fab color="primary">
+        <mat-icon>download</mat-icon>
+    </button>
+</div>
