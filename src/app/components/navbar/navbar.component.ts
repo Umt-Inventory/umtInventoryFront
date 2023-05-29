@@ -10,6 +10,7 @@ export class NavbarComponent {
     emri: any = localStorage.getItem('name');
     role: any = localStorage.getItem('role');
     greeting?: string;
+    currentDate: Date = new Date();
     constructor(private router: Router) {}
     ngOnInit() {
         this.getTimeOfDay();
@@ -32,7 +33,7 @@ export class NavbarComponent {
         } else if (hour >= 12 && hour < 16) {
             this.greeting = 'Mirëdita';
         } else {
-            this.greeting = 'Mirëmbrema';
+            this.greeting = 'Mirëmbrëma';
         }
     }
 }

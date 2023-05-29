@@ -29,6 +29,10 @@
                 border-radius: 50%;
             }
         }
+
+        .mat-mdc-paginator {
+            border-radius: 10px;
+        }
         .download-button {
             position: fixed;
             bottom: 2rem;

@@ -3,14 +3,24 @@
 </div>
 <!-- DESKTOP SCREEN TABLE -->
 <div class="container desktop-table">
-    <button class="add-button" mat-raised-button mat-button color="primary" (click)="goToAddItem(workspaceId)">
-        <mat-icon>add</mat-icon>
-        Shto
-    </button>
+    <p>
+        <mat-icon style="cursor: pointer" (click)="goback()">arrow_back_ios</mat-icon>
+
+        <button
+            class="add-button"
+            mat-raised-button
+            mat-button
+            style="background-color: #29abe2; color: white"
+            (click)="goToAddItem(workspaceId)">
+            <mat-icon>add</mat-icon>
+            Shto
+        </button>
+    </p>
+
     <div class="filters">
         <div class="search">
             <mat-form-field appearance="fill">
-                <mat-label>Kerko</mat-label>
+                <mat-label>Kërko</mat-label>
                 <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
                 <button
                     mat-button
@@ -27,7 +37,7 @@
             Total : <b>{{ totalItems }}</b>
         </p>
 
-        <button class="download-button" (click)="exportItems()" mat-fab color="primary">
+        <button class="download-button" (click)="exportItems()" mat-fab style="background-color: #29abe2">
             <mat-icon>download</mat-icon>
         </button>
     </div>
@@ -116,7 +126,7 @@
     <div class="filters">
         <div class="search">
             <mat-form-field appearance="fill">
-                <mat-label>Kerko</mat-label>
+                <mat-label>Kërko</mat-label>
                 <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
                 <button
                     mat-button
@@ -152,13 +162,13 @@
                 </button>
             </mat-card-actions>
         </mat-card>
-        <!-- </div>
+        <!-- </div> -->
+    </div>
     <mat-paginator
         [length]="totalItems"
         [pageSize]="currentPageSize"
         [pageSizeOptions]="pageSizeOptions"
-        (page)="onPageChanged($event)"></mat-paginator> -->
-    </div>
+        (page)="onPageChanged($event)"></mat-paginator>
     <button class="download-button" (click)="exportItems()" mat-fab color="primary">
         <mat-icon>download</mat-icon>
     </button>

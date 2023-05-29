@@ -1,10 +1,10 @@
 <div class="container" *ngIf="users">
     <div class="building-selection">
-        <h2 class="text-center">Manage Users:</h2>
+        <h2 class="text-center">Menaxho Përdoruesit:</h2>
         <div class="filters">
             <div class="search">
                 <mat-form-field appearance="fill">
-                    <mat-label>Search</mat-label>
+                    <mat-label>Kërko</mat-label>
                     <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
                     <button
                         mat-button
@@ -18,7 +18,7 @@
                 </mat-form-field>
             </div>
             <p class="total">
-                Total Users: <b>{{ users.totalUsers }}</b>
+                Total : <b>{{ users.totalUsers }}</b>
             </p>
         </div>
         <div class="row">

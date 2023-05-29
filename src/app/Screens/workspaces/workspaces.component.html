@@ -8,7 +8,7 @@
         <div class="filters">
             <div class="search">
                 <mat-form-field appearance="fill">
-                    <mat-label>Search</mat-label>
+                    <mat-label>Kërko</mat-label>
                     <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilter()" />
                     <button
                         mat-button
@@ -22,7 +22,7 @@
                 </mat-form-field>
             </div>
             <p class="total">
-                Total Workspaces: <b>{{ workspaces.totalWorkspaces }}</b>
+                Total: <b>{{ workspaces.totalWorkspaces }}</b>
             </p>
         </div>
         <div class="row">
