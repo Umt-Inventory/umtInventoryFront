@@ -3,14 +3,8 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Condition, UserType} from 'src/app/Screens/services/item.service';
 
 export interface DialogData {
-    id?: number;
-    price: number;
-    quantity: number;
-    condition: Condition;
-    description: string;
-    name: string;
-    type: UserType;
-    workspaceId: number;
+    title: string;
+    message: string;
 }
 
 @Component({
@@ -25,6 +19,10 @@ export class DialogItemComponent {
     ) {}
 
     onNoClick(): void {
-        this.dialogRef.close();
+        this.dialogRef.close(false);
+    }
+
+    onYesClick(): void {
+        this.dialogRef.close(true);
     }
 }

@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {Condition, ItemDto, ItemDtoById, ItemService, UserType} from '../services/item.service';
 import {Subscription} from 'rxjs';
+import {DialogItemComponent} from 'src/app/components/dialog-item/dialog-item.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-edit-item',
@@ -25,7 +27,8 @@ export class EditItemComponent implements OnInit {
         private toastr: ToastrService,
         private route: ActivatedRoute,
         private router: Router,
-        private itemService: ItemService
+        private itemService: ItemService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -59,7 +62,8 @@ export class EditItemComponent implements OnInit {
                 },
                 error: (error) => {
                     this.hasFormErrors = true;
-                    this.toastr.error('Failed to fetch item details.');
+
+                    this.router.navigate(['/buildings']);
                     console.error('Failed to fetch item details:', error);
                 },
             });
@@ -96,19 +100,28 @@ export class EditItemComponent implements OnInit {
         );
     }
     onDelete() {
-        if (confirm('Are you sure you want to delete this item?')) {
-            const itemId = Number(this.itemId);
-            this.deleteSubscription = this.itemService.deleteItem(itemId).subscribe({
-                next: () => {
-                    this.toastr.success('Item deleted successfully.');
-                    this.router.navigate(['/items', this.workspaceId]);
-                },
-                error: (error) => {
-                    this.toastr.error('Failed to delete item.');
-                    console.error('Failed to delete item:', error);
-                },
-            });
-        }
+        const dialogRef = this.dialog.open(DialogItemComponent, {
+            data: {
+                title: 'Fshirja e Objektit',
+                message: 'A jeni i sigurtë që doni të fshini këtë objekt?',
+            },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                const itemId = Number(this.itemId);
+                this.deleteSubscription = this.itemService.deleteItem(itemId).subscribe({
+                    next: () => {
+                        this.toastr.success('Item deleted successfully.');
+                        this.router.navigate(['/items', this.workspaceId]);
+                    },
+                    error: (error) => {
+                        this.toastr.error('Failed to delete item.');
+                        console.error('Failed to delete item:', error);
+                    },
+                });
+            }
+        });
     }
 
     ngOnDestroy() {

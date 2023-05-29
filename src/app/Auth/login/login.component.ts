@@ -18,7 +18,6 @@ export class LoginComponent {
     decodedToken: any;
     isLoading = true;
 
-
     constructor(
         private router: Router,
         private userFB: FormBuilder,
@@ -28,21 +27,20 @@ export class LoginComponent {
     ) {}
 
     ngOnInit() {
-        this.logout()   
+        this.logout();
         this.myForm = this.userFB.group({
             email: ['', [Validators.required]],
             password: [null, Validators.compose([Validators.required])],
         });
-        this.isLoading=false;
+        this.isLoading = false;
     }
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
-        
     }
 
     onSubmit() {
-        this.isLoading=true;
+        this.isLoading = true;
 
         if (this.myForm.invalid) {
             this.hasFormErrors = true;
@@ -62,14 +60,14 @@ export class LoginComponent {
                 localStorage.setItem('name', this.decodedToken.unique_name);
 
                 this.loginSuccesFlag = true;
-                this.isLoading=false;
+                this.isLoading = false;
                 this.toastr.success('Logim i suksesshem', 'Ju u loguat me sukses!');
 
                 this.router.navigate(['buildings']);
             },
             error: (error) => {
                 console.log(error);
-                this.isLoading=false;
+                this.isLoading = false;
 
                 this.toastr.error('Logimi deshtoi', 'Email-i ose Fjalekalimi i pasakte');
                 this.hasFormErrors = true;

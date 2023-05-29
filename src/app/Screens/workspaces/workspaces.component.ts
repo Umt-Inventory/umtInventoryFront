@@ -4,6 +4,8 @@ import {PaginatedWorkspace, WorkspaceDto, WorkspaceService} from '../services/wo
 import {ToastrService} from 'ngx-toastr';
 import {Subscription} from 'rxjs';
 import {PageEvent} from '@angular/material/paginator';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogItemComponent} from 'src/app/components/dialog-item/dialog-item.component';
 
 @Component({
     selector: 'app-workspaces',
@@ -24,7 +26,8 @@ export class WorkspacesComponent implements OnInit {
         private route: ActivatedRoute,
         private workspaceService: WorkspaceService,
         private router: Router,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -74,18 +77,28 @@ export class WorkspacesComponent implements OnInit {
     goToAddWorkspace() {
         this.router.navigate(['add-workspace', 0]);
     }
-
     deleteWorkspace(event: Event, workspaceId: number) {
         event.stopPropagation();
 
-        this.workspaceService.deleteWorkspace(workspaceId).subscribe({
-            next: (response) => {
-                this.toastr.success('Workspace deleted successfully');
-                this.getWorkspaces();
+        const dialogRef = this.dialog.open(DialogItemComponent, {
+            data: {
+                title: 'Fshirja e Objektit',
+                message: 'A jeni i sigurtë që doni të fshini këtë objekt?',
             },
-            error: (error) => {
-                this.toastr.error('Failed to delete workspace');
-            },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.workspaceService.deleteWorkspace(workspaceId).subscribe({
+                    next: (response) => {
+                        this.toastr.success('Workspace deleted successfully');
+                        this.getWorkspaces();
+                    },
+                    error: (error) => {
+                        this.toastr.error('Failed to delete workspace');
+                    },
+                });
+            }
         });
     }
 }

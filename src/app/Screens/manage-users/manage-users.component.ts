@@ -3,6 +3,8 @@ import {PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {PaginatedUsers, UserDto, UserRole, UserService} from 'src/app/Auth/services/user.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogItemComponent} from 'src/app/components/dialog-item/dialog-item.component';
 
 @Component({
     selector: 'app-manage-users',
@@ -22,7 +24,8 @@ export class ManageUsersComponent implements OnInit {
         private route: ActivatedRoute,
         private userService: UserService,
         private router: Router,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -83,17 +86,28 @@ export class ManageUsersComponent implements OnInit {
     }
 
     deleteUser(userId: number) {
-        this.userService.deleteUser(userId).subscribe({
-            next: (response) => {
-                console.log(response);
-                this.toastr.success('Fshirja me sukses!');
+        const dialogRef = this.dialog.open(DialogItemComponent, {
+            data: {
+                title: 'Fshirja e Përdoruesit',
+                message: 'A jeni i sigurtë që doni të fshini këtë përdorues?',
+            },
+        });
 
-                // Successful deletion, now fetch updated user list
-                this.getUsers();
-            },
-            error: (error) => {
-                this.toastr.error('Fshirja pa sukses!');
-            },
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.userService.deleteUser(userId).subscribe({
+                    next: (response) => {
+                        console.log(response);
+                        this.toastr.success('Fshirja me sukses!');
+
+                        // Successful deletion, now fetch updated user list
+                        this.getUsers();
+                    },
+                    error: (error) => {
+                        this.toastr.error('Fshirja pa sukses!');
+                    },
+                });
+            }
         });
     }
 }
