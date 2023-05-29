@@ -1,5 +1,13 @@
-.container {
-    margin-top: 5rem;
+// Mobile media queries
+
+.desktop-table {
+    display: none;
+}
+.mobile-container {
+    display: block;
+    .add-button {
+        margin: 1rem 0;
+    }
     .filters {
         display: flex;
         align-items: center;
@@ -21,51 +29,121 @@
                 border-radius: 50%;
             }
         }
+        .download-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+        }
     }
-    .itemtable {
-        display: flex;
-        .mat-elevation-z8 {
-            border-radius: 14px;
-            max-width: 1700px;
-            width: 100%;
-            box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.1);
 
-            table {
-                th.mat-header-cell.mat-sort-header {
-                    background-color: #29abe2 !important;
-                    color: white;
+    .item-card {
+        width: 100%;
+        margin: 0 auto 1rem auto;
+    }
+
+    .item-card .mat-card-header .mat-card-title,
+    .item-card .mat-card-header .mat-card-subtitle,
+    .item-card .mat-card-content p,
+    .item-card .mat-card-actions {
+        color: #333;
+    }
+
+    .item-card .mat-card-actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .download-button {
+        position: fixed;
+        bottom: 2rem;
+        right: 1rem;
+    }
+}
+
+// Desktop media queries
+@media screen and (min-width: 768px) {
+    .mobile-container {
+        display: none;
+    }
+    .desktop-table {
+        display: block;
+    }
+    .container {
+        margin: 2rem auto;
+        .add-button {
+            margin-bottom: 1rem;
+        }
+        .filters {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 10px;
+            background-color: white;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0px 0px 5px 0px #ccc;
+
+            .total {
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                align-items: center;
+                b {
+                    padding: 15px 20px;
+                    background-color: rgba(41, 171, 226, 0.5);
+                    border-radius: 50%;
                 }
             }
+            .download-button {
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+            }
+        }
+        .itemtable {
+            display: flex;
+            .mat-elevation-z8 {
+                border-radius: 14px;
+                max-width: 1700px;
+                width: 100%;
+                box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.1);
 
-            .mat-paginator {
-                margin-top: 10px;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .mat-paginator-range-label {
-                    font-weight: bold;
+                table {
+                    th.mat-header-cell.mat-sort-header {
+                        background-color: #29abe2 !important;
+                        color: white;
+                    }
                 }
 
-                .mat-paginator-navigation-previous,
-                .mat-paginator-navigation-next {
-                    color: #29abe2;
-                }
+                .mat-paginator {
+                    margin-top: 10px;
 
-                .mat-paginator-navigation-previous:hover,
-                .mat-paginator-navigation-next:hover {
-                    background-color: #29abe2;
-                    color: white;
-                }
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
 
-                .mat-select-arrow {
-                    color: #29abe2;
-                }
+                    .mat-paginator-range-label {
+                        font-weight: bold;
+                    }
 
-                .mat-select-panel {
-                    background-color: #f5f5f5;
-                    color: #333;
+                    .mat-paginator-navigation-previous,
+                    .mat-paginator-navigation-next {
+                        color: #29abe2;
+                    }
+
+                    .mat-paginator-navigation-previous:hover,
+                    .mat-paginator-navigation-next:hover {
+                        background-color: #29abe2;
+                        color: white;
+                    }
+
+                    .mat-select-arrow {
+                        color: #29abe2;
+                    }
+
+                    .mat-select-panel {
+                        background-color: #f5f5f5;
+                        color: #333;
+                    }
                 }
             }
         }

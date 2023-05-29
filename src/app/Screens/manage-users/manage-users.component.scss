@@ -1,5 +1,8 @@
 .building-selection {
-    margin-top: 5rem;
+    margin: 2rem auto;
+    .mat-mdc-paginator {
+        border-radius: 10px;
+    }
     .filters {
         display: flex;
         align-items: center;
@@ -25,7 +28,7 @@
     }
     .row {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
         padding-bottom: 3rem;
         div {
@@ -33,6 +36,7 @@
                 border: 1px solid #ccc;
                 border-radius: 10px;
                 cursor: pointer;
+                height: 100%;
                 &:hover {
                     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
                     background-color: white;
