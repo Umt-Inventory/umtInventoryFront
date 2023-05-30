@@ -54,8 +54,30 @@ body {
     min-height: 100vh;
 }
 
-.login-container {
-    margin: 2rem auto;
+.route-active {
+    border-block: 1px solid #ccc !important;
+    span {
+        color: $metropolitanBlue !important;
+    }
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 10px !important;
+}
+
+app-dialog-item {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.mat-mdc-menu-content {
+    padding: 0 !important;
+}
+
+.page-container {
+    margin: 2rem 0;
 }
 
 .button {
