@@ -5,6 +5,7 @@
 }
 .mobile-container {
     display: block;
+    padding-bottom: 2rem;
     .add-button {
         margin: 1rem 0;
     }
@@ -28,6 +29,10 @@
                 background-color: rgba(41, 171, 226, 0.5);
                 border-radius: 50%;
             }
+        }
+
+        .mat-mdc-paginator {
+            border-radius: 10px;
         }
         .download-button {
             position: fixed;

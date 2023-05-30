@@ -1,12 +1,20 @@
-<h1 mat-dialog-title>Edit Item</h1>
+<h1 mat-dialog-title>{{ data.title }}</h1>
 <div mat-dialog-content>
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="data.name" />
-    </mat-form-field>
-    <!-- Add more fields here for the rest of the item properties -->
+    <p>{{ data.message }}</p>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+    <button
+        mat-raised-button
+        mat-button
+        style="background-color: #29abe2; color: white; box-shadow: none"
+        (click)="onYesClick()">
+        Po
+    </button>
+    <button
+        mat-raised-button
+        mat-button
+        style="background-color: transparent; color: #29abe2; border: 1px solid #29abe2; box-shadow: none"
+        (click)="onNoClick()">
+        Jo
+    </button>
 </div>

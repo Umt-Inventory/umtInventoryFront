@@ -8,12 +8,14 @@
                     <mat-icon class="hamburger" mat-icon-button [matMenuTriggerFor]="menu">menu</mat-icon>
                 </div>
                 <mat-menu class="hamburger-menu" #menu="matMenu">
-                    <a mat-menu-item routerLink="/buildings">Hapësirat e Punës</a>
-                    <a mat-menu-item routerLink="/requests">Kërkesat</a>
-                    <a mat-menu-item *ngIf="isHrRole()" routerLink="/manage-users" routerLinkActive="active"
+                    <a mat-menu-item routerLink="/buildings" [routerLinkActive]="'route-active'">Hapësirat e Punës</a>
+                    <a mat-menu-item routerLink="/requests" [routerLinkActive]="'route-active'">Kërkesat</a>
+                    <a mat-menu-item *ngIf="isHrRole()" routerLink="/manage-users" [routerLinkActive]="'route-active'"
                         >Menaxho Përdoruesit</a
                     >
-                    <a mat-menu-item routerLink="/change-password">Ndrysho Fjalëkalimin</a>
+                    <a mat-menu-item routerLink="/change-password" [routerLinkActive]="'route-active'"
+                        >Ndrysho Fjalëkalimin</a
+                    >
                     <div mat-menu-item class="button button-logout" (click)="logout()">
                         <span>Dil</span>
                     </div>
