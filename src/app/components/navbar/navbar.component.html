@@ -9,7 +9,6 @@
                 </div>
                 <mat-menu class="hamburger-menu" #menu="matMenu">
                     <a mat-menu-item routerLink="/buildings" [routerLinkActive]="'route-active'">Hapësirat e Punës</a>
-                    <a mat-menu-item routerLink="/requests" [routerLinkActive]="'route-active'">Kërkesat</a>
                     <a mat-menu-item *ngIf="isHrRole()" routerLink="/manage-users" [routerLinkActive]="'route-active'"
                         >Menaxho Përdoruesit</a
                     >
