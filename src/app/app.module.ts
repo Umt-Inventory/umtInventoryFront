@@ -12,7 +12,6 @@ import {FooterComponent} from './components/footer/footer.component';
 import {NgxsModule} from '@ngxs/store';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {ItemsComponent} from './Screens/items/items.component';
-import {ItemDetailsComponent} from './Screens/item-details/item-details.component';
 import {BuildingsComponent} from './Screens/buildings/buildings.component';
 import {WorkspacesComponent} from './Screens/workspaces/workspaces.component';
 import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
@@ -32,7 +31,6 @@ import {EditItemComponent} from './Screens/edit-item/edit-item.component';
         FooterComponent,
         NavbarComponent,
         ItemsComponent,
-        ItemDetailsComponent,
         BuildingsComponent,
         WorkspacesComponent,
         ChangePasswordComponent,

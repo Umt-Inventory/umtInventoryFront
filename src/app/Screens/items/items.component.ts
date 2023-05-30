@@ -8,6 +8,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserRole} from 'src/app/Auth/services/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {Location} from '@angular/common';
+import {MatDialog} from '@angular/material/dialog';
+import {Subscription} from 'rxjs';
+import {DialogItemComponent} from 'src/app/components/dialog-item/dialog-item.component';
 
 @Component({
     selector: 'app-items',
@@ -15,7 +18,16 @@ import {Location} from '@angular/common';
     styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements AfterViewInit {
-    displayedColumns: string[] = ['position', 'name', 'price', 'quantity', 'description', 'type', 'condition', 'edit'];
+    displayedColumns: string[] = [
+        'position',
+        'name',
+        'price',
+        'quantity',
+        'description',
+        'condition',
+        'edit',
+        'delete',
+    ];
 
     dataSource: MatTableDataSource<ItemDto> = new MatTableDataSource<ItemDto>();
     @ViewChild(MatSort) sort: MatSort | undefined;
@@ -29,6 +41,7 @@ export class ItemsComponent implements AfterViewInit {
     pageSizeOptions: number[] = [5, 10, 25, 100];
     currentPageSize: number = 5;
     userRoles = Object.keys(UserRole).filter((key) => isNaN(Number(key)));
+    private deleteSubscription: Subscription | undefined;
 
     constructor(
         private _liveAnnouncer: LiveAnnouncer,
@@ -36,7 +49,8 @@ export class ItemsComponent implements AfterViewInit {
         private route: ActivatedRoute,
         private router: Router,
         private toastr: ToastrService,
-        private location: Location
+        private location: Location,
+        private dialog: MatDialog
     ) {}
 
     goToAddItem(workspaceId: string) {
@@ -131,5 +145,36 @@ export class ItemsComponent implements AfterViewInit {
                 this.toastr.error('Shkarkimi nuk u krye!');
             },
         });
+    }
+
+    onDelete(id: number) {
+        const dialogRef = this.dialog.open(DialogItemComponent, {
+            data: {
+                title: 'Fshirja e Objektit',
+                message: 'A jeni i sigurtë që doni të fshini këtë objekt?',
+            },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.deleteSubscription = this.itemService.deleteItem(id).subscribe({
+                    next: () => {
+                        this.toastr.success('Item deleted successfully.');
+                        this.fetchItems(this.pageIndex + 1, this.pageSize); // Fetch data again after successful deletion
+                        this.router.navigate(['/items', this.workspaceId]);
+                    },
+                    error: (error) => {
+                        this.toastr.error('Failed to delete item.');
+                        console.error('Failed to delete item:', error);
+                    },
+                });
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        if (this.deleteSubscription) {
+            this.deleteSubscription.unsubscribe();
+        }
     }
 }
