@@ -17,7 +17,6 @@ const routes: Routes = [
         path: '',
         component: LoginComponent,
     },
-
     {
         path: 'change-password',
         component: ChangePasswordComponent,
@@ -27,11 +26,13 @@ const routes: Routes = [
         path: 'register/:id',
         component: RegisterComponent,
         canActivate: [AuthGuard],
+        data: {roles: ['HR']}, // Specify the required role(s) for this route (e.g., 'HR')
     },
     {
         path: 'manage-users',
         component: ManageUsersComponent,
         canActivate: [AuthGuard],
+        data: {roles: ['HR']}, // Specify the required role(s) for this route (e.g., 'HR')
     },
     {
         path: 'buildings',

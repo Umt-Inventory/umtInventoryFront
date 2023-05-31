@@ -32,7 +32,7 @@ export class EditItemComponent implements OnInit {
             price: ['', [Validators.required, Validators.min(0)]],
             quantity: ['', [Validators.required, Validators.min(0)]],
             condition: ['', [Validators.required]],
-            description: ['', [Validators.required]],
+            description: [''],
             type: ['', [Validators.required]],
         });
 

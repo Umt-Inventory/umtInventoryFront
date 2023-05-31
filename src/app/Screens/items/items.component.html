@@ -122,7 +122,12 @@
 </div>
 <!-- MOBILE SCREEN TABLE -->
 <div class="mobile-container container">
-    <button class="add-button" mat-raised-button mat-button color="primary" (click)="goToAddItem(workspaceId)">
+    <button
+        class="add-button"
+        mat-raised-button
+        mat-button
+        style="background-color: #29abe2; color: white"
+        (click)="goToAddItem(workspaceId)">
         <mat-icon>add</mat-icon>
         Shto
     </button>
@@ -175,7 +180,7 @@
         [pageSize]="currentPageSize"
         [pageSizeOptions]="pageSizeOptions"
         (page)="onPageChanged($event)"></mat-paginator>
-    <button class="download-button" (click)="exportItems()" mat-fab color="primary">
+    <button class="download-button" (click)="exportItems()" mat-fab style="background-color: #29abe2">
         <mat-icon>download</mat-icon>
     </button>
 </div>
