@@ -17,8 +17,8 @@ export class ManageUsersComponent implements OnInit {
     filteredUsers: UserDto[] = [];
     isLoading = true;
     totalPages: any;
-    pageSizeOptions: number[] = [3, 5, 10, 25, 100];
-    currentPageSize: number = 3;
+    pageSizeOptions: number[] = [5, 10, 25, 100];
+    currentPageSize: number = 5;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,8 +31,13 @@ export class ManageUsersComponent implements OnInit {
     ngOnInit() {
         this.getUsers();
     }
-    getUsers(page: number = 1, pageSize: number = this.currentPageSize, filterUserRole: UserRole = UserRole.IT) {
-        this.userService.getUsers(page, pageSize, filterUserRole).subscribe({
+    getUsers(
+        page: number = 1,
+        pageSize: number = this.currentPageSize,
+        filterUserRole: UserRole = UserRole.IT,
+        searchString: string = ''
+    ) {
+        this.userService.getUsers(page, pageSize, filterUserRole, searchString).subscribe({
             next: (response) => {
                 this.users = response;
 
@@ -57,14 +62,16 @@ export class ManageUsersComponent implements OnInit {
     }
 
     applyFilter() {
-        this.filteredUsers = this.users.users.filter((user) =>
-            user.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
+        this.getUsers(1, this.currentPageSize, UserRole.IT, this.searchQuery.trim());
+        const currentUserId = localStorage.getItem('id');
+        this.filteredUsers = this.users.users.filter((user) => user.id !== Number(currentUserId));
     }
 
     onPageChange(event: PageEvent) {
         this.currentPageSize = event.pageSize;
-        this.getUsers(event.pageIndex + 1, event.pageSize);
+        this.getUsers(event.pageIndex + 1, event.pageSize, UserRole.IT, this.searchQuery.trim());
+        const currentUserId = localStorage.getItem('id');
+        this.filteredUsers = this.users.users.filter((user) => user.id !== Number(currentUserId));
     }
 
     onPageSizeChange(event: any) {
@@ -98,13 +105,13 @@ export class ManageUsersComponent implements OnInit {
                 this.userService.deleteUser(userId).subscribe({
                     next: (response) => {
                         console.log(response);
-                        this.toastr.success('Fshirja me sukses!');
+                        this.toastr.success('Fshirja u krye me sukses.');
 
                         // Successful deletion, now fetch updated user list
                         this.getUsers();
                     },
                     error: (error) => {
-                        this.toastr.error('Fshirja pa sukses!');
+                        this.toastr.error('Fshirja dështoi.');
                     },
                 });
             }

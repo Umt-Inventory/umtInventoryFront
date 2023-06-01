@@ -30,7 +30,7 @@ export class LoginComponent {
         this.logout();
         this.myForm = this.userFB.group({
             email: ['', [Validators.required]],
-            password: [null, Validators.compose([Validators.required])],
+            password: [null, Validators.compose([Validators.required, Validators.minLength(8)])],
         });
         this.isLoading = false;
     }
@@ -61,7 +61,7 @@ export class LoginComponent {
 
                 this.loginSuccesFlag = true;
                 this.isLoading = false;
-                this.toastr.success('Logim i suksesshem', 'Ju u loguat me sukses!');
+                this.toastr.success('Logim i suksesshëm', 'Ju u loguat me sukses!');
 
                 this.router.navigate(['buildings']);
             },
@@ -69,7 +69,7 @@ export class LoginComponent {
                 console.log(error);
                 this.isLoading = false;
 
-                this.toastr.error('Logimi deshtoi', 'Email-i ose Fjalekalimi i pasakte');
+                this.toastr.error('Logimi dështoi', 'Email-i ose Fjalëkalimi i pasaktë');
                 this.hasFormErrors = true;
             },
         });

@@ -9,9 +9,11 @@ import {catchError} from 'rxjs/operators';
 export class UserService {
     constructor(private httpClient: HttpClient) {}
 
-    getUsers(page: number = 1, pageSize: number = 10, filterUserRole: UserRole = UserRole.IT) {
-        const url = `${environment.baseUrl}/api/User?page=${page}&pageSize=${pageSize}&filterUserRole=${filterUserRole}`;
-
+    getUsers(page: number = 1, pageSize: number = 10, filterUserRole: UserRole = UserRole.IT, searchString?: string) {
+        let url = `${environment.baseUrl}/api/User?page=${page}&pageSize=${pageSize}&filterUserRole=${filterUserRole}`;
+        if (searchString) {
+            url += `&searchString=${searchString}`;
+        }
         return this.httpClient.get<PaginatedUsers<UserDto>>(url);
     }
     getUserById(id: number) {
@@ -76,6 +78,7 @@ export interface PaginatedUsers<T> {
     page: number;
     pageSize: number;
     filterUserRole: UserRole;
+    searchString?: string;
 }
 export enum UserRole {
     HR,

@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
                 name: ['', [Validators.required]],
                 surname: ['', [Validators.required]],
                 email: ['', [Validators.required, Validators.email]],
-                password: ['', Validators.required], // Include 'password' field
+                password: ['', [Validators.required, Validators.minLength(8)]], // Include 'password' field
                 role: ['', [Validators.required]],
                 phone: [''],
             });
@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         if (this.myForm.invalid) {
-            this.toastr.error('Formati i regjistrimit i pasakte!');
+            this.toastr.error('Formati i regjistrimit i pasaktë!');
             this.hasFormErrors = true;
             return;
         }
@@ -101,14 +101,23 @@ export class RegisterComponent implements OnInit {
         this.userService.addEditUser(userDto).subscribe({
             next: (response) => {
                 console.log(response);
+                if (this.userId === '0') {
+                    this.toastr.success('Përdoruesi u shtua me sukses.');
+                } else {
+                    this.toastr.success('Përdoruesi u modifikua me sukses.');
+                }
 
                 this.registerSuccessFlag = true;
-                this.toastr.success('User edited successfully.');
+
                 this.router.navigate(['manage-users']);
             },
             error: (error) => {
                 this.hasFormErrors = true;
-                this.toastr.error('Failed to edit user.');
+                if (this.userId === '0') {
+                    this.toastr.error('Regjistrimi  dështoi.');
+                } else {
+                    this.toastr.error('Modifikimi  dështoi.');
+                }
             },
         });
     }

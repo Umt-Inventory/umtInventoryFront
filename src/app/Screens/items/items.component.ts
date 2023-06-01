@@ -157,12 +157,12 @@ export class ItemsComponent implements AfterViewInit {
             if (result) {
                 this.deleteSubscription = this.itemService.deleteItem(id).subscribe({
                     next: () => {
-                        this.toastr.success('Item deleted successfully.');
+                        this.toastr.success('Fshirja u krye me sukses.');
                         this.fetchItems(this.pageIndex + 1, this.pageSize); // Fetch data again after successful deletion
                         this.router.navigate(['/items', this.workspaceId]);
                     },
                     error: (error) => {
-                        this.toastr.error('Failed to delete item.');
+                        this.toastr.error('Fshirja dështoi.');
                         console.error('Failed to delete item:', error);
                     },
                 });

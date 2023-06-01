@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PaginatedWorkspace, WorkspaceDto, WorkspaceService} from '../services/workspace.service';
 import {ToastrService} from 'ngx-toastr';
 import {Subscription} from 'rxjs';
@@ -15,12 +15,12 @@ import {DialogItemComponent} from 'src/app/components/dialog-item/dialog-item.co
 export class WorkspacesComponent implements OnInit {
     building: any;
     workspaces!: PaginatedWorkspace<WorkspaceDto>;
-    searchQuery = '';
     filteredWorkspaces: WorkspaceDto[] = [];
     isLoading = true;
-    totalPages: number = 0;
-    pageSizeOptions: number[] = [5, 10, 25, 50];
-    currentPageSize: number = 5;
+    totalPages = 0;
+    pageSizeOptions = [5, 10, 25, 50];
+    currentPageSize = 5;
+    searchQuery = '';
 
     constructor(
         private route: ActivatedRoute,
@@ -31,12 +31,12 @@ export class WorkspacesComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.building = this.route.snapshot.paramMap.get('id') || '';
+        this.building = this.route.snapshot.paramMap.get('id');
         this.getWorkspaces();
     }
 
-    getWorkspaces(page: number = 1, pageSize: number = this.currentPageSize) {
-        this.workspaceService.getPaginatedWorkspaces(page, pageSize, this.building).subscribe({
+    getWorkspaces(page: number = 1, pageSize: number = this.currentPageSize, searchString: string = '') {
+        this.workspaceService.getPaginatedWorkspaces(page, pageSize, this.building, searchString).subscribe({
             next: (response) => {
                 this.workspaces = response;
                 this.filteredWorkspaces = [...this.workspaces.workspace];
@@ -51,19 +51,16 @@ export class WorkspacesComponent implements OnInit {
     }
 
     applyFilter() {
-        this.filteredWorkspaces = this.workspaces.workspace.filter((workspace) =>
-            workspace.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
-    }
-
-    onPageChange(event: PageEvent) {
-        this.currentPageSize = event.pageSize;
-        this.getWorkspaces(event.pageIndex + 1, event.pageSize);
+        this.getWorkspaces(1, this.currentPageSize, this.searchQuery.trim());
     }
 
     resetFilter() {
         this.searchQuery = '';
         this.applyFilter();
+    }
+    onPageChange(event: PageEvent) {
+        this.currentPageSize = event.pageSize;
+        this.getWorkspaces(event.pageIndex + 1, event.pageSize, this.searchQuery.trim());
     }
 
     onSubmit(workspaceId: number) {
@@ -91,11 +88,11 @@ export class WorkspacesComponent implements OnInit {
             if (result) {
                 this.workspaceService.deleteWorkspace(workspaceId).subscribe({
                     next: (response) => {
-                        this.toastr.success('Workspace deleted successfully');
+                        this.toastr.success('Fshirja u krye me sukses');
                         this.getWorkspaces();
                     },
                     error: (error) => {
-                        this.toastr.error('Failed to delete workspace');
+                        this.toastr.error('Fshirja deshtoi');
                     },
                 });
             }

@@ -12,12 +12,17 @@ export class WorkspaceService {
     getPaginatedWorkspaces(
         page: number = 1,
         pageSize: number = 100,
-        building?: string
+        building?: string,
+        searchString?: string
     ): Observable<PaginatedWorkspace<WorkspaceDto>> {
         let params = new HttpParams().set('page', page.toString()).set('pageSize', pageSize.toString());
 
         if (building) {
             params = params.set('building', building);
+        }
+
+        if (searchString) {
+            params = params.set('searchString', searchString);
         }
 
         return this.httpClient.get<PaginatedWorkspace<WorkspaceDto>>(
@@ -44,6 +49,7 @@ export class WorkspaceService {
 export enum Building {
     G1 = 'G1',
     G2 = 'G2',
+    G3 = 'G3',
 }
 
 export enum WorkspaceType {
@@ -67,5 +73,6 @@ export interface PaginatedWorkspace<T> {
     totalWorkspaces: number;
     page: number;
     pageSize: number;
-    filterBuilding?: string; // Change this to the actual type
+    filterBuilding?: string;
+    searchString?: string;
 }

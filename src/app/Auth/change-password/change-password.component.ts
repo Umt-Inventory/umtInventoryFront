@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
-import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-change-password',
@@ -18,12 +18,11 @@ export class ChangePasswordComponent {
         private userService: UserService, // Injecting the user service
         private toastr: ToastrService,
         private router: Router
-
     ) {}
 
     ngOnInit() {
         this.myForm = this.formBuilder.group({
-            oldPassword: ['', [Validators.required]],
+            oldPassword: ['', [Validators.required, Validators.minLength(8)]],
             newPassword: ['', [Validators.required, Validators.minLength(8)]],
         });
     }
@@ -41,9 +40,8 @@ export class ChangePasswordComponent {
                 this.userService.ChangePassword(Number(userId), oldPassword, newPassword).subscribe({
                     next: () => {
                         this.myForm.reset();
-                        this.toastr.success('Fjalekalimi  u ndryshua me sukses!');
+                        this.toastr.success('Fjalëkalimi  u ndryshua me sukses!');
                         this.router.navigate(['']);
-
                     },
                     error: (error) => {
                         // Handle error here
@@ -53,8 +51,7 @@ export class ChangePasswordComponent {
                 });
             } else {
                 // Handle the case when the user ID is not found in local storage
-                this.toastr.error('Nuk u gjet perdorues me kete ID.');
-                
+                this.toastr.error('Nuk u gjet përdorues me këtë ID.');
             }
         }
     }
