@@ -2,29 +2,29 @@
     <div class="page-container">
         <div class="login-body-container">
             <div class="login-header">
-                <p class="login-title">{{ workspaceId === '0' ? 'Shto' : 'Ndrysho' }}</p>
+                <p class="login-title">{{ workspaceId === '0' ? 'Shto hapsirë pune' : 'Modifiko hapsirën e punës' }}</p>
             </div>
             <form [formGroup]="myForm" class="forma">
                 <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
-                    <mat-label for="name">Name</mat-label>
-                    <input matInput type="text" formControlName="name" placeholder="Name" autocomplete="off" />
-                    <mat-error *ngIf="myForm.controls['name'].invalid">Incorrect name</mat-error>
+                    <mat-label for="name">Emri</mat-label>
+                    <input matInput type="text" formControlName="name" placeholder="Emri" autocomplete="off" />
+                    <mat-error *ngIf="myForm.controls['name'].invalid">Emri nuk mun të jetë bosh</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
-                    <mat-label>Type</mat-label>
+                    <mat-label>Lloji</mat-label>
                     <mat-select formControlName="type">
                         <mat-option *ngFor="let type of workspaceTypes" [value]="type">{{ type }}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="myForm.controls['type'].invalid">Please select a type</mat-error>
+                    <mat-error *ngIf="myForm.controls['type'].invalid">Zgjidhni</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="bisha" hideRequiredMarker>
-                    <mat-label for="building">Building</mat-label>
+                    <mat-label for="building">Ndërtesa</mat-label>
                     <mat-select formControlName="building">
                         <mat-option *ngFor="let building of buildingOptions" [value]="building">{{
                             building
                         }}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="myForm.controls['building'].invalid">Incorrect building</mat-error>
+                    <mat-error *ngIf="myForm.controls['building'].invalid">Ndërtesë e pasaktë</mat-error>
                 </mat-form-field>
                 <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">
                     {{ workspaceId === '0' ? 'Shto' : 'Ruaj' }}

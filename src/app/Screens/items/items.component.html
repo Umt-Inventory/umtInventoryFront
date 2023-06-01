@@ -49,21 +49,21 @@
                 <!-- Position Column -->
                 <ng-container matColumnDef="position">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
-                        Number
+                        Numri
                     </th>
                     <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Emri</th>
                     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
                 </ng-container>
 
                 <!-- Price Column -->
                 <ng-container matColumnDef="price">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price">
-                        Price
+                        Çmimi
                     </th>
                     <td mat-cell *matCellDef="let element">{{ element.price }}</td>
                 </ng-container>
@@ -71,7 +71,7 @@
                 <!-- Quantity Column -->
                 <ng-container matColumnDef="quantity">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity">
-                        Quantity
+                        Sasia
                     </th>
                     <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
                 </ng-container>
@@ -79,7 +79,7 @@
                 <!-- Description Column -->
                 <ng-container matColumnDef="description">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by description">
-                        Description
+                        Përshkrim
                     </th>
                     <td mat-cell *matCellDef="let element">{{ element.description }}</td>
                 </ng-container>
@@ -87,13 +87,13 @@
                 <!-- Condition Column -->
                 <ng-container matColumnDef="condition">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by condition">
-                        Condition
+                        Gjëndja
                     </th>
                     <td mat-cell *matCellDef="let element">{{ element.condition }}</td>
                 </ng-container>
                 <!-- Edit Column -->
                 <ng-container matColumnDef="edit">
-                    <th mat-header-cell *matHeaderCellDef>Edit</th>
+                    <th mat-header-cell *matHeaderCellDef>Modifiko</th>
                     <td mat-cell *matCellDef="let element">
                         <button mat-button (click)="goToEditItem(element.id)">
                             <mat-icon>edit</mat-icon>
@@ -102,7 +102,7 @@
                 </ng-container>
                 <!-- Delete Column -->
                 <ng-container matColumnDef="delete">
-                    <th mat-header-cell *matHeaderCellDef>Delete</th>
+                    <th mat-header-cell *matHeaderCellDef>Fshi</th>
                     <td mat-cell *matCellDef="let element">
                         <button mat-button (click)="onDelete(element.id)">
                             <mat-icon>delete</mat-icon>
@@ -166,11 +166,11 @@
                 </mat-card-actions>
             </mat-card-header>
             <mat-card-content>
-                <p>Number : {{ i + 1 }}</p>
-                <p>Price: {{ item.price }}</p>
-                <p>Quantity: {{ item.quantity }}</p>
-                <p>Description: {{ item.description }}</p>
-                <p>Condition: {{ item.condition }}</p>
+                <p>Numri : {{ i + 1 }}</p>
+                <p>Çmimi: {{ item.price }}</p>
+                <p>Sasia: {{ item.quantity }}</p>
+                <p>Përshrkim: {{ item.description }}</p>
+                <p>Gjëndja: {{ item.condition }}</p>
             </mat-card-content>
         </mat-card>
     </div>
