@@ -3,9 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {Condition, ItemDto, ItemDtoById, ItemService, UserType} from '../services/item.service';
-import {Subscription} from 'rxjs';
-import {DialogItemComponent} from 'src/app/components/dialog-item/dialog-item.component';
-import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-edit-item',
@@ -20,15 +17,13 @@ export class EditItemComponent implements OnInit {
     conditions = Object.values(Condition);
     types = Object.values(UserType);
     item: ItemDtoById | undefined;
-    private deleteSubscription: Subscription | undefined;
 
     constructor(
         private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private route: ActivatedRoute,
         private router: Router,
-        private itemService: ItemService,
-        private dialog: MatDialog
+        private itemService: ItemService
     ) {}
 
     ngOnInit() {
@@ -37,7 +32,7 @@ export class EditItemComponent implements OnInit {
             price: ['', [Validators.required, Validators.min(0)]],
             quantity: ['', [Validators.required, Validators.min(0)]],
             condition: ['', [Validators.required]],
-            description: ['', [Validators.required]],
+            description: [''],
             type: ['', [Validators.required]],
         });
 
@@ -98,35 +93,5 @@ export class EditItemComponent implements OnInit {
                 this.toastr.error('Failed to edit item.');
             }
         );
-    }
-    onDelete() {
-        const dialogRef = this.dialog.open(DialogItemComponent, {
-            data: {
-                title: 'Fshirja e Objektit',
-                message: 'A jeni i sigurtë që doni të fshini këtë objekt?',
-            },
-        });
-
-        dialogRef.afterClosed().subscribe((result) => {
-            if (result) {
-                const itemId = Number(this.itemId);
-                this.deleteSubscription = this.itemService.deleteItem(itemId).subscribe({
-                    next: () => {
-                        this.toastr.success('Item deleted successfully.');
-                        this.router.navigate(['/items', this.workspaceId]);
-                    },
-                    error: (error) => {
-                        this.toastr.error('Failed to delete item.');
-                        console.error('Failed to delete item:', error);
-                    },
-                });
-            }
-        });
-    }
-
-    ngOnDestroy() {
-        if (this.deleteSubscription) {
-            this.deleteSubscription.unsubscribe();
-        }
     }
 }

@@ -65,10 +65,6 @@
                 <button (click)="onSubmit()" [disabled]="!myForm.valid" class="button button-full">
                     {{ itemId === '0' ? 'Shto' : 'Ruaj' }}
                 </button>
-                <br />
-                <button *ngIf="itemId !== '0'" (click)="onDelete()" class="button button-full button-delete">
-                    Fshij
-                </button>
             </form>
         </div>
     </div>

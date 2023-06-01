@@ -4,7 +4,10 @@
             <div class="nav-items">
                 <img class="logoinnav" src="../../../assets/UMT Inventory/umtinventoy 1.svg" alt="" />
                 <div class="right-menu">
-                    <span>{{ greeting }} {{ emri }}!</span>
+                    <span
+                        >{{ greeting }} <br class="hide-for-web" />
+                        {{ emri }}!</span
+                    >
                     <mat-icon class="hamburger" mat-icon-button [matMenuTriggerFor]="menu">menu</mat-icon>
                 </div>
                 <mat-menu class="hamburger-menu" #menu="matMenu">
