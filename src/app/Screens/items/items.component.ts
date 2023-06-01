@@ -32,7 +32,7 @@ export class ItemsComponent implements AfterViewInit {
     dataSource: MatTableDataSource<ItemDto> = new MatTableDataSource<ItemDto>();
     @ViewChild(MatSort) sort: MatSort | undefined;
     isLoading = true;
-    searchQuery: string = '';
+    searchString: string = '';
     pageSize: number = 5;
     pageIndex: number = 0;
     workspaceId: any;
@@ -78,7 +78,7 @@ export class ItemsComponent implements AfterViewInit {
         this.router.navigate(['/edit-item', this.workspaceId, itemId]);
     }
 
-    fetchItems(page: number = 1, pageSize: number = this.currentPageSize) {
+    fetchItems(page: number = 1, pageSize: number = this.currentPageSize, searchString: string = '') {
         let filterUserType: UserType | undefined = undefined;
 
         if (this.currentUserRole === 'HR') {
@@ -88,7 +88,7 @@ export class ItemsComponent implements AfterViewInit {
         }
 
         this.itemService
-            .getPaginatedItems(this.workspaceId, page, pageSize, filterUserType)
+            .getPaginatedItems(this.workspaceId, page, pageSize, filterUserType, searchString)
             .subscribe((paginatedItems: PaginatedItems<ItemDto>) => {
                 this.dataSource.data = paginatedItems.items;
                 this.totalItems = paginatedItems.totalItems;
@@ -104,15 +104,13 @@ export class ItemsComponent implements AfterViewInit {
     }
 
     applyFilter() {
-        const filterValue = this.searchQuery.trim().toLowerCase();
-        this.dataSource.filter = filterValue;
+        this.fetchItems(this.pageIndex + 1, this.pageSize, this.searchString.trim());
     }
 
     resetFilter() {
-        this.searchQuery = '';
-        this.applyFilter();
+        this.searchString = '';
+        this.fetchItems(this.pageIndex + 1, this.pageSize, this.searchString.trim());
     }
-
     onPageChanged(event: PageEvent) {
         const pageIndex = event.pageIndex;
         const pageSize = event.pageSize;

@@ -6,7 +6,10 @@
 .mobile-container {
     display: block;
     padding-bottom: 2rem;
-    .add-button {
+    .upper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         margin: 1rem 0;
     }
     .filters {
@@ -41,6 +44,29 @@
         }
     }
 
+    div {
+        mat-card {
+            mat-card-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 1.5rem;
+                mat-card-actions {
+                    min-height: unset;
+                    padding: 0;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+            mat-card-content {
+                p {
+                    word-wrap: break-word;
+                }
+            }
+        }
+    }
+
     .item-card {
         width: 100%;
         margin: 0 auto 1rem auto;
@@ -65,7 +91,7 @@
 }
 
 // Desktop media queries
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1000px) {
     .mobile-container {
         display: none;
     }
@@ -74,7 +100,11 @@
     }
     .container {
         margin: 2rem auto;
-        .add-button {
+        .upper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            justify-content: space-between;
             margin-bottom: 1rem;
         }
         .filters {
